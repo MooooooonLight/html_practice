@@ -1,312 +1,458 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>百度一下，你就知道</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="baidu.css" />
+    <link
+      rel="shortcut icon"
+      href="./image/littlebaidu.png"
+      type="image/x-icon"
+    />
+    <script type="text/javascript" src="baidu.js"></script>
+  </head>
 
-<head>
-  <title>百度一下，你就知道</title>
-  <meta charset="utf-8" />
-  <link rel="stylesheet" href="baidu.css" />
-  <link rel="shortcut icon" href="./image/littlebaidu.png" type="image/x-icon" />
-  <script type="text/javascript" src="baidu.js"></script>
-</head>
-
-<body>
-  <!-- 上部导航按钮 -->
-  <div class="top-main">
-    <!-- 左边 -->
-    <div class="top-left">
-      <a href="http://news.baidu.com/">新闻</a>
-      <a href="https://www.hao123.com/">hao123</a>
-      <a href="http://map.baidu.com/">地图</a>
-      <a href="https://live.baidu.com/">直播</a>
-      <a href="https://haokan.baidu.com/?sfrom=baidu-top">视频</a>
-      <a href="http://tieba.baidu.com/">贴吧</a>
-      <a href="http://xueshu.baidu.com/">学术</a>
-      <a href="http://www.baidu.com/more/">更多</a>
+  <body>
+    <!-- 上部导航按钮 -->
+    <div class="top-main">
+      <!-- 左边 -->
+      <div class="top-left">
+        <a href="http://news.baidu.com/">新闻</a>
+        <a href="https://www.hao123.com/">hao123</a>
+        <a href="http://map.baidu.com/">地图</a>
+        <a href="https://live.baidu.com/">直播</a>
+        <a href="https://haokan.baidu.com/?sfrom=baidu-top">视频</a>
+        <a href="http://tieba.baidu.com/">贴吧</a>
+        <a href="http://xueshu.baidu.com/">学术</a>
+        <a href="http://www.baidu.com/more/">更多</a>
+      </div>
+      <!-- 右边 -->
+      <div class="top-right">
+        <!-- 设置 -->
+        <div class="top-right-set">
+          <a href="#"
+            >设置
+            <div class="top-right-set-content">
+              <a href="javascript:set1()">搜索设置</a>
+              <a href="javascript:set2()">高级搜索</a>
+              <a href="#">关闭预测</a>
+              <a href="#">隐私设置</a>
+              <a href="#">隐藏资讯</a>
+              <a href="#">关闭播报</a>
+              <hr class="line" />
+              <a href="#">更换皮肤</a>
+            </div>
+          </a>
+        </div>
+        <!-- 拓展1 -->
+        <div>
+          <a href="#">拓展1</a>
+        </div>
+        <!-- 拓展2 -->
+        <div>
+          <a href="#">拓展2</a>
+        </div>
+      </div>
     </div>
-    <!-- 右边 -->
-    <div class="top-right">
-      <!-- 设置 -->
-      <div class="top-right-set">
-        <a href="#">设置
-          <div class="top-right-set-content">
-            <a href="javascript:set1()">搜索设置</a>
-            <a href="javascript:set2()">高级搜索</a>
-            <a href="#">关闭预测</a>
-            <a href="#">隐私设置</a>
-            <a href="#">隐藏资讯</a>
-            <a href="#">关闭播报</a>
-            <hr class="line">
-            <a href="#">更换皮肤</a>
-          </div>
+
+    <!-- 中间图片及搜索栏 -->
+    <div class="middle-main">
+      <!-- 图片 -->
+      <div class="middle-picture">
+        <a
+          href="https://www.baidu.com/s?wd=%E7%99%BE%E%BA%A6%E
+        7%83%AD%E6%90%9C&sa=ire_dl_gh_logo_texing&rsv_dl=igh_logo_pc"
+          title="点击一下，了解更多"
+        >
+          <img src="./image/baidu.png" alt="图片加载失败" width="300px" />
         </a>
       </div>
-      <!-- 拓展1 -->
-      <div>
-        <a href="#">拓展1</a>
+      <!-- 搜索栏 -->
+      <div class="middle-serach">
+        <form
+          class="center"
+          action="http://www.baidu.com/baidu"
+          target="_blank"
+        >
+          <input class="middle-serach-input" type="text" name="wd" />
+          <input class="middle-serach-begin" type="submit" value="百度一下" />
+        </form>
       </div>
-      <!-- 拓展2 -->
-      <div>
-        <a href="#">拓展2</a>
-      </div>
-      </li>
     </div>
-  </div>
 
-  <!-- 中间图片及搜索栏 -->
-  <div class="middle-main">
-    <!-- 图片 -->
-    <div class="middle-picture">
-      <a href="https://www.baidu.com/s?wd=%E7%99%BE%E%BA%A6%E
-        7%83%AD%E6%90%9C&sa=ire_dl_gh_logo_texing&rsv_dl=igh_logo_pc" title="点击一下，了解更多">
-        <img src="./image/baidu.png" alt="图片加载失败" width="300px" />
-      </a>
-    </div>
-    <!-- 搜索栏 -->
-    <div class="middle-serach">
-      <form class="center" action="http://www.baidu.com/baidu" target="_blank">
-        <input class="middle-serach-input" type="text" name="wd" />
-        <input class="middle-serach-begin" type="submit" value="百度一下" />
-      </form>
-    </div>
-  </div>
-
-  <!-- 设置弹窗 -->
-  <div id="top_right_set">
-    <!-- 标题块 -->
-    <ul id="top_right_set_title">
-      <li onclick="searchSet()">搜索设置</li>
-      <li onclick="advSearch()">高级搜索</li>
-      <li onclick="homeSet()">首页设置</li>
-      <a style="margin-left: 400px;" onclick="close()" href="javascript:close()"><img width="15px"
-          src="./image/close.jpg" alt="图片加载失败"></a>
-    </ul>
-    <!-- 搜索设置 -->
-    <ul id="top_right_set_searchset">
-      <!-- 搜索框提示 -->
-      <div>
-        <div class="div-width">
-          <li>搜索框提示：</li>
-          <li class="li-color">是否希望在搜索时显示搜索框提示</li>
-        </div>
-        <input id="sea_set_show" type="radio" name="show" checked="checked" />
-        <li class="li-curosr" onclick="radio_status('sea_set_show')">
-          显示
-        </li>
-        <input id="top_right_set_searchset_show" type="radio" name="show" />
-        <li class="li-curosr" onclick="radio_status('top_right_set_searchset_show')">
-          不显示
-        </li>
-
-
-      </div>
-      <!-- 搜索语言范围 -->
-      <div>
-        <div class="div-width">
-          <li>搜索语言范围：</li>
-          <li class="li-color">设定您所要搜索的网页内容的语言</li>
-        </div>
-        <input id="top_right_set_searchset_allLanguage" type="radio" name="language" checked="checked" />
-        <li class="li-curosr" onclick="radio_status('top_right_set_searchset_allLanguage')">
-          全部语言
-        </li>
-        <input id="top_right_set_searchset_onlySampleCh" type="radio" name="language" />
-        <li class="li-curosr" onclick="radio_status('top_right_set_searchset_onlySampleCh')">
-          仅简体中文
-        </li>
-        <input id="top_right_set_searchset_onlyTraCh" type="radio" name="language" />
-        <li class="li-curosr" onclick="radio_status('top_right_set_searchset_onlyTraCh')">
-          仅繁体中文
-        </li>
-      </div>
-      <!-- 搜索结果显示条数 -->
-      <div>
-        <div class="div-width">
-          <li>搜索结果显示条数：</li>
-          <li class="li-color">设定您希望搜索结果显示的条数</li>
-        </div>
-        <input id="top_right_set_searchset_eachPage10" type="radio" name="page" checked="checked" />
-        <li class="li-curosr" onclick="radio_status('top_right_set_searchset_eachPage10')">
-          每页10条
-        </li>
-        <input id="top_right_set_searchset_eachPage20" type="radio" name="page" />
-        <li class="li-curosr" onclick="radio_status('top_right_set_searchset_eachPage20')">
-          每页20条
-        </li>
-        <input id="top_right_set_searchset_eachPage50" type="radio" name="page" />
-        <li class="li-curosr" onclick="radio_status('top_right_set_searchset_eachPage50')">
-          每页50条
-        </li>
-      </div>
-      <!-- 实时探测功能 -->
-      <div>
-        <div class="div-width">
-          <li>实时预测功能：</li>
-          <li class="li-color">是否希望在您输入时实时展现搜索结果</li>
-        </div>
-        <input id="top_right_set_searchset_realTimeOpen" type="radio" name="open" checked="checked" />
-        <li class="li-curosr" onclick="radio_status('top_right_set_searchset_realTimeOpen')">
-          开启
-        </li>
-        <input id="top_right_set_searchset_realTimeClose" type="radio" name="open" />
-        <li class="li-curosr" onclick="radio_status('top_right_set_searchset_realTimeClose')">
-          关闭
-        </li>
-      </div>
-      <!-- 搜索历史记录 -->
-      <div>
-        <div class="div-width">
-          <li>搜索历史记录：</li>
-          <li class="li-color">是否希望在搜索时显示您账号下的搜索历史</li>
-        </div>
-        <input id="top_right_set_searchset_historyDisplay" type="radio" name="history" checked="checked" />
-        <li class="li-curosr" onclick="radio_status('top_right_set_searchset_historyDisplay')">
-          显示
-        </li>
-        <input type="radio" name="history" id="top_right_set_searchset_historyNoDisplay" />
-        <li class="li-curosr" onclick="radio_status('top_right_set_searchset_historyNoDisplay')">
-          不显示
-        </li>
-      </div>
-      <!-- 恢复&保存 -->
-      <div id="savere">
-        <li>
-          <div class="search-set-btn">
-            <button id="saveset" style="color: white; background-color: #4662d9">
-              保存设置
-            </button>
-            <button id="recover" style="margin-right: 20px;">恢复默认</button>
+    <!-- 设置弹窗 -->
+    <div id="top_right_set">
+      <!-- 标题块 -->
+      <ul id="top_right_set_title">
+        <li onclick="searchSet()">搜索设置</li>
+        <li onclick="advSearch()">高级搜索</li>
+        <li onclick="homeSet()">首页设置</li>
+        <a
+          style="margin-left: 400px"
+          onclick="close()"
+          href="javascript:close()"
+          ><img width="15px" src="./image/close.jpg" alt="图片加载失败"
+        /></a>
+      </ul>
+      <!-- 搜索设置 -->
+      <ul id="top_right_set_searchset">
+        <!-- 搜索框提示 -->
+        <div>
+          <div class="div-width">
+            <li>搜索框提示：</li>
+            <li class="li-color">是否希望在搜索时显示搜索框提示</li>
           </div>
-        </li>
-      </div>
-    </ul>
-    <!-- 高级搜索 -->
-    <ul id="advancedSearch">
-      <!-- 搜索结果 -->
-      <div style="padding-bottom: 0; padding-left: 0;">
+          <input id="sea_set_show" type="radio" name="show" checked="checked" />
+          <li class="li-curosr" onclick="radio_status('sea_set_show')">显示</li>
+          <input id="top_right_set_searchset_show" type="radio" name="show" />
+          <li
+            class="li-curosr"
+            onclick="radio_status('top_right_set_searchset_show')"
+          >
+            不显示
+          </li>
+        </div>
+        <!-- 搜索语言范围 -->
+        <div>
+          <div class="div-width">
+            <li>搜索语言范围：</li>
+            <li class="li-color">设定您所要搜索的网页内容的语言</li>
+          </div>
+          <input
+            id="top_right_set_searchset_allLanguage"
+            type="radio"
+            name="language"
+            checked="checked"
+          />
+          <li
+            class="li-curosr"
+            onclick="radio_status('top_right_set_searchset_allLanguage')"
+          >
+            全部语言
+          </li>
+          <input
+            id="top_right_set_searchset_onlySampleCh"
+            type="radio"
+            name="language"
+          />
+          <li
+            class="li-curosr"
+            onclick="radio_status('top_right_set_searchset_onlySampleCh')"
+          >
+            仅简体中文
+          </li>
+          <input
+            id="top_right_set_searchset_onlyTraCh"
+            type="radio"
+            name="language"
+          />
+          <li
+            class="li-curosr"
+            onclick="radio_status('top_right_set_searchset_onlyTraCh')"
+          >
+            仅繁体中文
+          </li>
+        </div>
+        <!-- 搜索结果显示条数 -->
+        <div>
+          <div class="div-width">
+            <li>搜索结果显示条数：</li>
+            <li class="li-color">设定您希望搜索结果显示的条数</li>
+          </div>
+          <input
+            id="top_right_set_searchset_eachPage10"
+            type="radio"
+            name="page"
+            checked="checked"
+          />
+          <li
+            class="li-curosr"
+            onclick="radio_status('top_right_set_searchset_eachPage10')"
+          >
+            每页10条
+          </li>
+          <input
+            id="top_right_set_searchset_eachPage20"
+            type="radio"
+            name="page"
+          />
+          <li
+            class="li-curosr"
+            onclick="radio_status('top_right_set_searchset_eachPage20')"
+          >
+            每页20条
+          </li>
+          <input
+            id="top_right_set_searchset_eachPage50"
+            type="radio"
+            name="page"
+          />
+          <li
+            class="li-curosr"
+            onclick="radio_status('top_right_set_searchset_eachPage50')"
+          >
+            每页50条
+          </li>
+        </div>
+        <!-- 实时探测功能 -->
+        <div>
+          <div class="div-width">
+            <li>实时预测功能：</li>
+            <li class="li-color">是否希望在您输入时实时展现搜索结果</li>
+          </div>
+          <input
+            id="top_right_set_searchset_realTimeOpen"
+            type="radio"
+            name="open"
+            checked="checked"
+          />
+          <li
+            class="li-curosr"
+            onclick="radio_status('top_right_set_searchset_realTimeOpen')"
+          >
+            开启
+          </li>
+          <input
+            id="top_right_set_searchset_realTimeClose"
+            type="radio"
+            name="open"
+          />
+          <li
+            class="li-curosr"
+            onclick="radio_status('top_right_set_searchset_realTimeClose')"
+          >
+            关闭
+          </li>
+        </div>
+        <!-- 搜索历史记录 -->
+        <div>
+          <div class="div-width">
+            <li>搜索历史记录：</li>
+            <li class="li-color">是否希望在搜索时显示您账号下的搜索历史</li>
+          </div>
+          <input
+            id="top_right_set_searchset_historyDisplay"
+            type="radio"
+            name="history"
+            checked="checked"
+          />
+          <li
+            class="li-curosr"
+            onclick="radio_status('top_right_set_searchset_historyDisplay')"
+          >
+            显示
+          </li>
+          <input
+            type="radio"
+            name="history"
+            id="top_right_set_searchset_historyNoDisplay"
+          />
+          <li
+            class="li-curosr"
+            onclick="radio_status('top_right_set_searchset_historyNoDisplay')"
+          >
+            不显示
+          </li>
+        </div>
+        <!-- 恢复&保存 -->
+        <div id="savere">
+          <li>
+            <div class="search-set-btn">
+              <button
+                id="saveset"
+                style="color: white; background-color: #4662d9"
+              >
+                保存设置
+              </button>
+              <button id="recover" style="margin-right: 20px">恢复默认</button>
+            </div>
+          </li>
+        </div>
+      </ul>
+      <!-- 高级搜索 -->
+      <ul id="advancedSearch">
+        <!-- 搜索结果 -->
+        <div style="padding-bottom: 0; padding-left: 0">
+          <div>
+            <li>搜索结果：</li>
+            <span style="color: rgb(51, 51, 51)">包含全部关键字</span>
+            <input style="margin-right: 10px" type="text" name="" id="" />
+            <span style="color: rgb(51, 51, 51)">包含完整关键字</span>
+            <input type="text" name="" id="" />
+          </div>
+          <div style="margin-left: 69px">
+            <span style="color: rgb(51, 51, 51)">包含全部关键字</span>
+            <input style="margin-right: 10px" type="text" name="" id="" />
+            <span style="color: rgb(51, 51, 51)">包含完整关键字</span>
+            <input type="text" name="" id="" />
+          </div>
+        </div>
+        <!-- 时间 -->
+        <div style="padding-left: 8px">
+          <li>时间：</li>
+          <li style="color: rgb(98, 102, 117)">限定要搜索的网页的时间是</li>
+          <select name="time" id="time">
+            <option value="全部时间">全部时间</option>
+            <option value="最近一天">最近一天</option>
+            <option value="最近一周">最近一周</option>
+            <option value="最近一月">最近一月</option>
+            <option value="最近一年">最近一年</option>
+          </select>
+        </div>
+        <!-- 文档格式 -->
+        <div>
+          <li>文档格式：</li>
+          <li style="color: rgb(98, 102, 117)">搜索网页格式是</li>
+          <select name="" id="time" style="margin-left: 198px">
+            <option value="">所有网页和文件</option>
+            <option value="">Adobe Acrobat PDF (.pdf)</option>
+            <option value="">微软 Word (.doc)</option>
+            <option value="">微软 Excel (.xls)</option>
+            <option value="">微软 Powerpoint (.ppt)</option>
+            <option value="">RTF 文件 （.rtf)</option>
+            <option value="">所有格式</option>
+          </select>
+        </div>
+        <!-- 关键词位置 -->
+        <div id="keypos">
+          <li>关键词位置：</li>
+          <li style="color: rgb(98, 102, 117)">查询关键词位于</li>
+          <input
+            type="radio"
+            name="key"
+            id="every"
+            style="margin-left: 187px"
+            checked="checked"
+          />
+          <li style="cursor: pointer" onclick="radio_status('every')">
+            网页任何地方
+          </li>
+          <input type="radio" name="key" id="only" />
+          <li style="cursor: pointer" onclick="radio_status('only')">
+            仅网页标题中
+          </li>
+          <input type="radio" name="key" id="onlyurl" />
+          <li style="cursor: pointer" onclick="radio_status('onlyurl')">
+            仅URL中
+          </li>
+        </div>
+        <!-- 站内搜索 -->
+        <div>
+          <li>站内搜索：</li>
+          <li style="color: rgb(98, 102, 117)">限定要搜索指定的网站是</li>
+          <input
+            type="text"
+            name=""
+            id=""
+            style="
+              margin-left: 149px;
+              border: 2px solid #c4c7ce;
+              border-radius: 5px;
+              margin-bottom: -5px;
+            "
+          />
+          <li style="color: rgb(98, 102, 117)">例如：baidu.com</li>
+        </div>
+        <!-- 按键 -->
+        <div>
+          <li style="margin-left: 365px">
+            <button style="background-color: rgb(78, 110, 242); color: white">
+              高级搜索
+            </button>
+          </li>
+        </div>
+      </ul>
+      <!-- 首页设置 -->
+      <ul id="homeSet">
+        <!-- 天气模块 -->
+        <div>
+          <li>天气模块：</li>
+          <li style="color: rgb(98, 102, 117)">是否显示天气预报</li>
+          <input
+            type="radio"
+            name="weather"
+            id="weatherOpen"
+            checked="checked"
+            style="margin-left: 250px"
+          />
+          <li style="cursor: pointer" onclick="radio_status('weatherOpen')">
+            打开
+          </li>
+          <input type="radio" name="weather" id="weatherClose" />
+          <li style="cursor: pointer" onclick="radio_status('weatherClose')">
+            关闭
+          </li>
+        </div>
+        <!-- 搜索结果 -->
         <div>
           <li>搜索结果：</li>
-          <span style="color: rgb(51, 51, 51);">包含全部关键字</span>
-          <input style="margin-right: 10px;" type="text" name="" id="">
-          <span style="color: rgb(51, 51, 51);">包含完整关键字</span>
-          <input type="text" name="" id="">
+          <li style="color: rgb(98, 102, 117)">搜索结果是否在新窗口打开</li>
+          <input
+            type="radio"
+            name="res"
+            id="resOpen"
+            style="margin-left: 198px"
+          />
+          <li style="cursor: pointer" onclick="radio_status('resOpen')">
+            打开
+          </li>
+          <input type="radio" name="res" id="resClose" checked="checked" />
+          <li style="cursor: pointer" onclick="radio_status('resClose')">
+            关闭
+          </li>
         </div>
-        <div style="margin-left: 69px;">
-          <span style="color: rgb(51, 51, 51);">包含全部关键字</span>
-          <input style="margin-right: 10px;" type="text" name="" id="">
-          <span style="color: rgb(51, 51, 51);">包含完整关键字</span>
-          <input type="text" name="" id="">
+        <!-- 换肤活动 -->
+        <div>
+          <li>换肤活动：</li>
+          <li style="color: rgb(98, 102, 117)">是否开启换肤活动提醒</li>
+          <input
+            type="radio"
+            name="skin"
+            id="skinOpen"
+            checked="checked"
+            style="margin-left: 225px"
+          />
+          <li style="cursor: pointer" onclick="radio_status('skinOpen')">
+            打开
+          </li>
+          <input type="radio" name="skin" id="skinClose" />
+          <li style="cursor: pointer" onclick="radio_status('skinClose')">
+            关闭
+          </li>
         </div>
-      </div>
-      <!-- 时间 -->
-      <div style="padding-left: 8px;">
-        <li>时间：</li>
-        <li style="color: rgb(98, 102, 117);">限定要搜索的网页的时间是</li>
-        <select name="time" id="time">
-          <option value="全部时间">全部时间</option>
-          <option value="最近一天">最近一天</option>
-          <option value="最近一周">最近一周</option>
-          <option value="最近一月">最近一月</option>
-          <option value="最近一年">最近一年</option>
-        </select>
-      </div>
-      <!-- 文档格式 -->
-      <div>
-        <li>文档格式：</li>
-        <li style="color: rgb(98, 102, 117);">搜索网页格式是</li>
-        <select name="" id="time" style="margin-left: 198px;">
-          <option value="">所有网页和文件</option>
-          <option value="">Adobe Acrobat PDF (.pdf)</option>
-          <option value="">微软 Word (.doc)</option>
-          <option value="">微软 Excel (.xls)</option>
-          <option value="">微软 Powerpoint (.ppt)</option>
-          <option value="">RTF 文件 （.rtf)</option>
-          <option value="">所有格式</option>
+        <!-- 按钮 -->
+        <div>
+          <li style="margin-left: 430px">
+            <button style="background-color: #4662d9; color: white">
+              保存设置
+            </button>
+          </li>
+        </div>
+      </ul>
+    </div>
 
-        </select>
-      </div>
-      <!-- 关键词位置 -->
-      <div id="keypos">
-        <li>关键词位置：</li>
-        <li style="color: rgb(98, 102, 117);">查询关键词位于</li>
-        <input type="radio" name="key" id="every" style="margin-left: 187px;" checked="checked">
-        <li style="cursor: pointer;" onclick="radio_status('every')">网页任何地方</li>
-        <input type="radio" name="key" id="only">
-        <li style="cursor: pointer;" onclick="radio_status('only')">仅网页标题中</li>
-        <input type="radio" name="key" id="onlyurl">
-        <li style="cursor: pointer;" onclick="radio_status('onlyurl')">仅URL中</li>
-      </div>
-      <!-- 站内搜索 -->
-      <div>
-        <li>站内搜索：</li>
-        <li style="color: rgb(98, 102, 117);">限定要搜索指定的网站是</li>
-        <input type="text" name="" id=""
-          style="margin-left: 149px;border: 2px solid #c4c7ce;border-radius: 5px;margin-bottom: -5px;">
-        <li style="color: rgb(98, 102, 117);">例如：baidu.com</li>
-      </div>
-      <!-- 按键 -->
-      <div>
-        <li style="margin-left: 365px;">
-          <button style="background-color:rgb(78, 110, 242) ;color: white;">高级搜索</button>
-        </li>
-      </div>
-    </ul>
-    <!-- 首页设置 -->
-    <ul id="homeSet">
-      <!-- 天气模块 -->
-      <div>
-        <li>天气模块：</li>
-        <li style="color: rgb(98, 102, 117);">是否显示天气预报</li>
-        <input type="radio" name="weather" id="weatherOpen" checked="checked" style="margin-left: 250px;">
-        <li style="cursor: pointer;" onclick="radio_status('weatherOpen')">打开</li>
-        <input type="radio" name="weather" id="weatherClose">
-        <li style="cursor: pointer;" onclick="radio_status('weatherClose')">关闭</li>
-      </div>
-      <!-- 搜索结果 -->
-      <div>
-        <li>搜索结果：</li>
-        <li style="color: rgb(98, 102, 117);">搜索结果是否在新窗口打开</li>
-        <input type="radio" name="res" id="resOpen" style="margin-left: 198px;">
-        <li style="cursor: pointer;" onclick="radio_status('resOpen')">打开</li>
-        <input type="radio" name="res" id="resClose" checked="checked">
-        <li style="cursor: pointer;" onclick="radio_status('resClose')">关闭</li>
-      </div>
-      <!-- 换肤活动 -->
-      <div>
-        <li>换肤活动：</li>
-        <li style="color: rgb(98, 102, 117);">是否开启换肤活动提醒</li>
-        <input type="radio" name="skin" id="skinOpen" checked="checked" style="margin-left: 225px;">
-        <li style="cursor: pointer;" onclick="radio_status('skinOpen')">打开</li>
-        <input type="radio" name="skin" id="skinClose">
-        <li style="cursor: pointer;" onclick="radio_status('skinClose')">关闭</li>
-      </div>
-      <!-- 按钮 -->
-      <div>
-        <li style="margin-left: 430px;">
-          <bUtton style="background-color: #4662d9;;color: white;">
-            保存设置
-          </bUtton>
-        </li>
-      </div>
-    </ul>
-  </div>
+    <!-- 下部导航按钮 -->
+    <div style="bottom: 0; position: fixed">
+      <p class="bottomfun">
+        <a href="https://home.baidu.com/">关于百度</a>
+        <a href="http://ir.baidu.com/">About Baidu</a>
+        <a href="https://www.baidu.com/duty">使用百度前必读</a>
+        <a href="https://help.baidu.com/">帮助中心</a>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11000002000001"
+          >京公网安备11000002000001号</a
+        >
+        <a href="https://beian.miit.gov.cn/">京ICP证030173号</a>
 
-  <!-- 下部导航按钮 -->
-  <div style="bottom: 0; position: fixed;">
-    <p class="bottomfun">
-      <a href="https://home.baidu.com/">关于百度</a>
-      <a href="http://ir.baidu.com/">About Baidu</a>
-      <a href="https://www.baidu.com/duty">使用百度前必读</a>
-      <a href="https://help.baidu.com/">帮助中心</a>
-      <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11000002000001">京公网安备11000002000001号</a>
-      <a href="https://beian.miit.gov.cn/">京ICP证030173号</a>
+        <a class="disclick" href="">©2021 Baidu </a>
+        <a class="disclick" href=""
+          >互联网药品信息服务资格证书 (京)-经营性-2017-0020</a
+        >
 
-      <a class="disclick" href="">©2021 Baidu </a>
-      <a class="disclick" href="">互联网药品信息服务资格证书 (京)-经营性-2017-0020</a>
-
-      <a href="https://www.baidu.com/licence/">信息网络传播视听节目许可证 0110516</a>
-    </p>
-  </div>
-
-</body>
-
+        <a href="https://www.baidu.com/licence/"
+          >信息网络传播视听节目许可证 0110516</a
+        >
+      </p>
+    </div>
+  </body>
 </html>
