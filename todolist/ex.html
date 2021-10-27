@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script type="text/javascript">
+      window.onload = function () {
+        var btnAdd = document.getElementById("btnAdd");
+        var tempTab = document.getElementById("tempTab");
+        btnAdd.onclick = function () {
+          var oTr = document.createElement("tr");
+          var oTd1 = document.createElement("td");
+          oTd1.innerHTML = tempTab.tBodies[0].rows.length + 1;
+          oTr.appendChild(oTd1);
+          var oTd2 = document.createElement("td");
+          oTd2.innerHTML = tempTab.tBodies[0].rows.length + 1;
+          oTr.appendChild(oTd2);
+          var oTd3 = document.createElement("td");
+          var oInput = document.createElement("input");
+          oInput.type = "button";
+          oInput.value = "点我";
+          oInput.onclick = function () {
+            alert(
+              "第" +
+                this.parentNode.parentNode.rowIndex +
+                "行,第" +
+                (this.parentNode.cellIndex + 1) +
+                "列"
+            );
+          };
+          oTd3.appendChild(oInput);
+          oTr.appendChild(oTd3);
+          tempTab.tBodies[0].appendChild(oTr);
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <input id="btnAdd" type="button" value="点我向表格里面添加input按钮" />
+    <table id="tempTab" border="1" width="300">
+      <thead>
+        <tr>
+          <td>第一列</td>
+          <td>第二列</td>
+          <td>第三列</td>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </body>
+</html>

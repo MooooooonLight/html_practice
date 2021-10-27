@@ -1,0 +1,38 @@
+[1026/090409.230:INFO:crash_reporting.cc(219)] Crash reporting enabled for process: browser
+[1026/090409.344:INFO:gpu_process_host.cc(941)] [XWEB_LOG_GPU]  GPU process laucnched multi-process mode SUCCESS!!! gpu-process-pid:15152 gpu-process-sandbox:1
+[1026/090409.387:INFO:crash_reporting.cc(219)] Crash reporting enabled for process: gpu-process
+[1026/090410.537:INFO:crash_reporting.cc(219)] Crash reporting enabled for process: utility
+[1026/090609.407:INFO:crash_reporting.cc(219)] Crash reporting enabled for process: gpu-process
+[1026/124514.879:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 104 to 127
+[1026/124514.881:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 106 to 125
+[1026/124514.882:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 110 to 124
+[1026/124514.882:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 112 to 123
+[1026/124514.882:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 103 to 122
+[1026/124514.882:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 105 to 121
+[1026/124514.882:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 111 to 120
+[1026/124514.883:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 113 to 119
+[1026/124514.883:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 109 to 118
+[1026/124514.883:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 1 to 14
+[1026/124514.883:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 3 to 13
+[1026/124514.883:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 5 to 12
+[1026/124514.883:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 6 to 11
+[1026/124517.681:WARNING:stun_port.cc(450)] Port[54134b8:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Wildcard:id=0]]: StunPort: stun host lookup received error 0
+[1026/124620.348:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 104 to 127
+[1026/124620.349:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 106 to 125
+[1026/124620.349:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 110 to 124
+[1026/124620.349:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 112 to 123
+[1026/124620.350:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 103 to 122
+[1026/124620.350:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 105 to 121
+[1026/124620.350:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 111 to 120
+[1026/124620.350:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 113 to 119
+[1026/124620.350:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 109 to 118
+[1026/124620.350:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 1 to 14
+[1026/124620.350:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 3 to 13
+[1026/124620.350:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 5 to 12
+[1026/124620.350:WARNING:used_ids.h(55)] Duplicate id found. Reassigning from 6 to 11
+[1026/124621.847:WARNING:stun_port.cc(450)] Port[50c8bc0:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Wildcard:id=0]]: StunPort: stun host lookup received error 0
+[1027/135729.756:WARNING:angle_platform_impl.cc(45)] compileToBinary(256): 
+C:\fakepath(75,10-46): warning X3571: pow(f, e) will not work for negative f, use abs(f) or conditionally handle negative values if you expect them
+C:\fakepath(98,10-46): warning X3571: pow(f, e) will not work for negative f, use abs(f) or conditionally handle negative values if you expect them
+
+[1027/135737.137:INFO:crash_reporting.cc(219)] Crash reporting enabled for process: utility

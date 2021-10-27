@@ -1,0 +1,238 @@
+/* 通用样式 */
+.line {
+  width: 50px;
+  text-align: center;
+  margin-bottom: -5px;
+  margin-top: -3px;
+}
+.li-curosr {
+  cursor: pointer;
+}
+.li-color {
+  color: #626675;
+}
+.div-width {
+  display: inline-block;
+  width: 380px;
+  margin-left: -5px;
+}
+.search-set-btn {
+  margin-left: 380px;
+}
+/* 上部导航栏 */
+.top-main div {
+  display: inline-block;
+}
+.top-main a {
+  text-decoration: none;
+  font-size: 14px;
+  margin-left: 20px;
+  margin-top: 15px;
+}
+.top-main a:link {
+  color: black;
+}
+.top-main a:visited {
+  color: black;
+}
+.top-main a:hover {
+  color: blue;
+}
+.top-right {
+  float: right;
+}
+.top-right-set {
+  padding-bottom: 10px;
+}
+.top-right-set div {
+  display: none;
+}
+.top-right-set-content {
+  position: absolute;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 10px 0px;
+  border-radius: 12px;
+  padding: 0;
+  margin-top: 10px;
+  border-bottom: 10px;
+  border-top: 20px;
+}
+.top-right-set-content a {
+  text-decoration: none; /*无文本修饰*/
+  display: block; /*块级元素，前后有换行符*/
+  text-align: center;
+  margin-left: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.top-right-set:hover .top-right-set-content {
+  display: block;
+}
+
+/* 中间图片及导航栏 */
+.middle-main {
+  margin-top: 150px;
+  text-align: center;
+}
+.middle-serach {
+  width: 725px;
+  display: inline-block;
+  margin-top: 40px; /*上边距*/
+}
+.middle-serach-input {
+  width: 480px;
+  height: 40px;
+  font-size: 16px;
+  padding-right: 100px; /* 元素右内边距 */
+  padding-left: 10px;
+  border-radius: 10px 0 0 10px; /*圆角边框*/
+  border: 2px solid #c4c7ce;
+  /* box-sizing: border-box; 怪异盒模型 */
+  background-color: white;
+}
+.middle-serach-input:hover {
+  /* outline: none; 设置轮廓属性 */
+  border-color: #4e6ef2;
+}
+.middle-serach-input:focus {
+  outline: none; /*设置轮廓属性*/
+  border-color: #4e6ef2;
+}
+.middle-serach-begin {
+  cursor: pointer; /*设置鼠标选中样式*/
+  width: 108px;
+  height: 46px;
+  font-size: 17px;
+  background-color: #4e6ef2;
+  border-radius: 0 10px 10px 0;
+  color: white;
+  box-shadow: none;
+  font-weight: 400;
+  border: none;
+  margin-left: -6px; /*左边距*/
+  vertical-align: top;
+}
+.middle-serach-begin:hover {
+  background-color: #4662d9;
+}
+
+/* 设置 */
+#top_right_set {
+  font-size: small;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 10px 0px;
+  border-radius: 12px;
+  width: 764px;
+  margin: auto;
+  /* display: none; */
+}
+#top_right_set li {
+  display: inline-block;
+}
+#top_right_set input {
+  cursor: pointer;
+}
+#top_right_set div {
+  padding: 5px;
+}
+/* 设置-标题 */
+#top_right_set_title li {
+  font-size: 14px;
+  padding-right: 20px;
+  padding-left: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+#top_right_set_title li:hover {
+  color: #4662d9;
+}
+#top_right_set button {
+  float: right;
+  outline: none;
+  border-style: none;
+  font-size: 13px;
+  width: 80px;
+  height: 30px;
+  margin-bottom: 25px;
+  margin-right: 140px;
+  background-color: rgb(245, 245, 246);
+  color: black;
+  border-radius: 6px;
+  padding-bottom: 3px;
+  cursor: pointer;
+}
+#top_right_set button:hover {
+  background-color: #4662d9;
+  color: white;
+}
+/* 设置-搜索设置 */
+#top_right_set_searchset {
+  /* display: none; */
+}
+/* 设置-高级搜索 */
+#advancedSearch {
+  display: none;
+}
+#advancedSearch input {
+  border-radius: 5px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  box-shadow: none; /*阴影*/
+  border: 2px solid #c4c7ce;
+  padding: 5px;
+  border-left: none;
+  outline: none;
+  margin-left: -6px;
+  vertical-align: bottom;
+  height: 13px;
+  cursor: text;
+}
+#advancedSearch span {
+  border-radius: 5px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  box-shadow: none; /*阴影*/
+  border: 2px solid #c4c7ce;
+  padding: 3px;
+  display: inline-block;
+  cursor: default;
+}
+#advancedSearch div {
+}
+#time {
+  margin-left: 158px;
+  /* outline: none; */
+  border-radius: 5px;
+  border: 2px solid #c4c7ce;
+  height: 27px;
+}
+#keypos input {
+  margin-left: 10px;
+}
+/* 首页设置 */
+#homeSet {
+  display: none;
+}
+
+/* 下部导航按钮 */
+.bottomfun {
+  text-align: center;
+}
+.bottomfun a {
+  text-decoration: none;
+  font-size: small;
+}
+.bottomfun a:link {
+  color: #bbb;
+}
+.bottomfun a:visited {
+  color: #bbb;
+}
+.bottomfun a:hover {
+  color: black;
+}
+/* 不可点击超链接 */
+.disclick {
+  cursor: pointer;
+  pointer-events: none;
+}

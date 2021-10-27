@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=, initial-scale=1.0" />
+    <link rel="stylesheet" href="todolist.css" />
+    <script type="text/javascript" src="todolist.js"></script>
+    <title>ToDoList</title>
+  </head>
+
+  <body>
+    <!-- 顶部导航栏 -->
+    <nav class="navigation">
+      <!-- <form onsubmit="addItem()"> -->
+      <b>新增待办事项：</b>
+      <input type="text" id="item" />
+      <input
+        name="submit"
+        type="button"
+        id="submit"
+        value="添加"
+        onclick="addItem()"
+        onkeydown="OnTextChanged()"
+      />
+      <input
+        name="submit-list"
+        type="button"
+        id="submit-list"
+        value="批量添加"
+        onclick="addList()"
+      />
+      <!-- </form> -->
+    </nav>
+    <!-- 待办事项列表 -->
+    <div id="todo-list">
+      <b>待办事项如下：</b>
+      <table id="table" border="1"></table>
+    </div>
+    <!-- 批量添加文本框 -->
+    <div id="inputDiv">
+      <textarea name="" id="listInput" cols="30" rows="10"></textarea>
+      <input type="button" id="sure" value="确定" onclick="ensure()" />
+    </div>
+  </body>
+</html>
