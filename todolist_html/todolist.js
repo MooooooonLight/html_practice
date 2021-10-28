@@ -2,6 +2,8 @@ function addItem() {
   var listItem = document.getElementById("item").value;
 
   addOnce(listItem);
+
+  document.getElementById("item").value = "";
 }
 function addList() {
   document.getElementById("inputDiv").style.display = "block";
@@ -38,6 +40,9 @@ function addOnce(text) {
   btn1.style.float = "right";
 
   btn.onclick = finished;
+
+  btn.style.transition;
+
   btn1.onclick = sort;
 
   oTh.innerHTML = text;
@@ -51,19 +56,20 @@ function addOnce(text) {
 }
 
 function finished() {
-  this.checked = true;
-
-  // sleep(500);
+  if (this.checked != true) {
+    this.checked = ture;
+  }
 
   var tr = this.parentNode.parentNode;
+
   var tbody = tr.parentNode;
-  tbody.removeChild(tr);
+  setTimeout(function () {
+    tbody.removeChild(tr);
+  }, 500);
+  // setTimeout(function () {
+  //   Delete(tr);
+  // }, 500);
 }
-
-function sleep(d) {
-  for (var t = Date.now(); Date.now() - t <= d; );
-}
-
 function ensure() {
   document.getElementById("inputDiv").style.display = "none";
   debugger;
@@ -77,8 +83,6 @@ function ensure() {
 }
 
 function sort() {
-  // debugger;
-
   this.checked = false;
 
   var aa = document.getElementById("table");
@@ -89,18 +93,26 @@ function sort() {
 
   var liness = aa.innerText;
 
-  var temp = lines[0];
+  var temp = td.innerText;
 
-  lines[0] = td.innerText;
+  debugger;
 
   for (var i = 2; i < lines.length; i += 2) {
-    if (lines[i] == td.innerText) {
-      lines[i] = temp;
+    if (lines[i] == temp) {
+      lines.splice(i, 2);
     }
   }
 
+  var res = new Array();
+
+  res[0] = temp;
+
   for (var i = 0; i < lines.length; i += 2) {
-    aa.children[i / 2].children[0].childNodes[0].data = lines[i];
+    res[i / 2 + 1] = lines[i];
+  }
+
+  for (var i = 0; i < res.length; i++) {
+    aa.children[i].children[0].childNodes[0].data = res[i];
   }
 }
 
