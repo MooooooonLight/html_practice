@@ -57,7 +57,7 @@ function addOnce(text) {
 
 function finished() {
   if (this.checked != true) {
-    this.checked = ture;
+    this.checked = true;
   }
 
   var tr = this.parentNode.parentNode;
@@ -95,7 +95,9 @@ function sort() {
 
   var temp = td.innerText;
 
-  debugger;
+  // debugger;
+
+  if (temp == lines[0]) return;
 
   for (var i = 2; i < lines.length; i += 2) {
     if (lines[i] == temp) {
