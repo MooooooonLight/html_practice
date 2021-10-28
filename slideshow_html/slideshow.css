@@ -1,0 +1,30 @@
+body h1 {
+  text-align: center;
+}
+#main {
+  width: 500px;
+  height: 666.406px;
+  margin: auto;
+  position: relative;
+}
+#left {
+  margin-left: 5%;
+  /* margin-left: 0; */
+}
+#right {
+  margin-left: 85%;
+}
+.picture {
+  position: absolute;
+  width: 500px;
+  z-index: 0;
+  /* transition-duration: 1s; */
+  /* opacity: 0; */
+}
+.arrows {
+  cursor: pointer;
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  text-align: center;
+}

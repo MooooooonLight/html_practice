@@ -11,20 +11,20 @@ class SlideShow {
     // 公有属性
     this.type = slideType;
     this.list = imgList;
+  }
+  // 根据种类生成轮播图
+  creatSlide() {
     // hover触发
-
+    if (this.type === "id-hover") { }
+    // click触发
+    if (this.type === "id-click") { }
+    // 指示器在容器外
+    if (this.type === "id-out") { }
+    // 箭头常驻
+    if (this.type === "id-arrows") { }
+    // 卡片化
+    if (this.type === "id-card") { }
+    // 竖向滚动
+    if (this.type === "id-vertical") { }
   }
-  if (this.type === "id-hover") {
-    hoverStart();
-  }
-// click触发
-clickStart();
-// 指示器在容器外
-divOutBottom();
-// 箭头常驻
-arrowAlwaysShow();
-// 卡片化
-card();
-// 竖向滚动
-verticalRoll();
 }
