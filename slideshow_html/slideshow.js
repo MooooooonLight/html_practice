@@ -11,13 +11,11 @@ class SlideShow {
     // 公有属性
     this.type = slideType;
     this.list = imgList;
+    this.divWidth = 0;
   }
+
   // 根据种类生成轮播图
   creatSlide() {
-    // debugger;
-    document.getElementById("picture").style.transition = "margin-left 3s";
-    document.getElementById("picture").style.marginLeft = "-2000px";
-
     // // hover触发
     // if (this.type === "id-hover") {
     // }
@@ -37,16 +35,30 @@ class SlideShow {
     // if (this.type === "id-vertical") {
     // }
   }
+  circulation() {
+    // debugger;
+    this.stop = setInterval(this.moveOnce, 1000);
+  }
+
+  /*
+   *@functionName: moveOnce
+   *@Author: 张浩楠
+   *@Date: 2021-10-29 18:13:01
+   *@param in:
+   *@param out:
+   *@return:
+   *@Description: 移动一次
+   */
+  moveOnce() {
+    this.divWidth += 100;
+    document.getElementById("picture").style.marginLeft = this.divWidth + "px";
+
+    console.log(document.getElementById("picture").style.marginLeft);
+
+    if (this.divWidth >= 2000) {
+      clearInterval(this.stop);
+    }
+  }
 }
 
-const p = new SlideShow(1, 2);
-
-function circulation() {
-  debugger;
-
-  setInterval(p.creatSlide, reset, 3000);
-}
-
-function reset() {
-  document.getElementById("picture").style.marginLeft = "0px";
-}
+var p = new SlideShow(1, 2);
