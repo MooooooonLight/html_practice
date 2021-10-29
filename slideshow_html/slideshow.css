@@ -6,6 +6,7 @@ body h1 {
   height: 666.406px;
   margin: auto;
   position: relative;
+  overflow: hidden;
 }
 #left {
   margin-left: 5%;
@@ -14,12 +15,15 @@ body h1 {
 #right {
   margin-left: 85%;
 }
-.picture {
-  position: absolute;
+#picture {
+  display: flex;
+}
+
+#picture img {
   width: 500px;
+  height: 666.406px;
   z-index: 0;
-  /* transition-duration: 1s; */
-  /* opacity: 0; */
+  display: inline-block;
 }
 .arrows {
   cursor: pointer;
@@ -27,4 +31,42 @@ body h1 {
   position: absolute;
   top: 50%;
   text-align: center;
+}
+#pointer li {
+  border: 1px, solid, white;
+  z-index: 1;
+  cursor: pointer;
+  position: absolute;
+  width: 50px;
+  height: 4px;
+
+  bottom: 10px;
+  list-style: none;
+  background-color: rgb(150, 142, 142);
+}
+#pointer li:hover {
+  background-color: white;
+}
+#pointer-1 {
+  margin-left: 30px;
+}
+#pointer-2 {
+  margin-left: 130px;
+}
+#pointer-3 {
+  margin-left: 230px;
+}
+#pointer-4 {
+  margin-left: 330px;
+}
+#picture-1 {
+}
+#picture-1 :hover {
+  opacity: 1;
+}
+#picture-2 {
+}
+#picture-3 {
+}
+#picture-4 {
 }

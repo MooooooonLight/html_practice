@@ -91,8 +91,6 @@ function sort() {
 
   var lines = aa.innerText.split("\n");
 
-  var liness = aa.innerText;
-
   var temp = td.innerText;
 
   // debugger;

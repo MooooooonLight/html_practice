@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>轮播图片</title>
   </head>
-
   <body>
     <h1>请欣赏轮播图片：</h1>
     <!-- 主区域 -->
@@ -22,10 +21,14 @@
         width="50px"
       />
       <!-- 轮播图片 -->
-      <img id="picture-1" class="picture" src="./image/2.jpg" alt="false" />
-      <img id="picture-2" class="picture" src="./image/3.jpg" alt="false" />
-      <img id="picture-3" class="picture" src="./image/4.jpg" alt="false" />
-      <img id="picture-4" class="picture" src="./image/5.jpg" alt="false" />
+      <div id="picture">
+        <img id="picture-1" src="./image/2.jpg" alt="false" />
+        <img id="picture-2" src="./image/3.jpg" alt="false" />
+        <img id="picture-3" src="./image/4.jpg" alt="false" />
+        <img id="picture-4" src="./image/5.jpg" alt="false" />
+        <img id="picture-5" src="./image/2.jpg" alt="false" />
+      </div>
+
       <!-- 右箭头 -->
       <img
         id="right"
@@ -33,7 +36,15 @@
         src="./image/right.jpg"
         alt="false"
         width="50px"
+        onclick="circulation()"
       />
+      <!-- 指示器 -->
+      <ul id="pointer">
+        <li id="pointer-1"></li>
+        <li id="pointer-2"></li>
+        <li id="pointer-3"></li>
+        <li id="pointer-4"></li>
+      </ul>
     </div>
   </body>
 </html>
