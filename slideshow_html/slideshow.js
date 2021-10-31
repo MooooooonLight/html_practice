@@ -1,64 +1,134 @@
+let index = 0;
+let lock = true;
 /*
- *@className:SlideShow
+ *@functionName:
  *@Author: 张浩楠
- *@param: slideType-轮播图种类 imgList-轮播图片列表
- *@Date: 2021-10-28 17:21:23
- *@Description:
+ *@Date: 2021-10-31 15:59:32
+ *@param in:
+ *@param out:
+ *@return:
+ *@Description: 右按钮点击事件
  */
-class SlideShow {
-  // 构造函数
-  constructor(slideType, imgList) {
-    // 公有属性
-    this.type = slideType;
-    this.list = imgList;
-    this.divWidth = 0;
+function clickRight() {
+  // bottomShow();
+  if (!lock) return;
+  let images = document.querySelector(".img-list");
+
+  index++;
+  images.style.transition = "0.5s ease";
+  if (index === 4) {
+    setTimeout(function () {
+      images.style.marginLeft = 0;
+      index = 0;
+      images.style.transition = "none";
+    }, 500);
   }
 
-  // 根据种类生成轮播图
-  creatSlide() {
-    // // hover触发
-    // if (this.type === "id-hover") {
-    // }
-    // // click触发
-    // if (this.type === "id-click") {
-    // }
-    // // 指示器在容器外
-    // if (this.type === "id-out") {
-    // }
-    // // 箭头常驻
-    // if (this.type === "id-arrows") {
-    // }
-    // // 卡片化
-    // if (this.type === "id-card") {
-    // }
-    // // 竖向滚动
-    // if (this.type === "id-vertical") {
-    // }
+  images.style.marginLeft = -index * 500 + "px";
+
+  lock = false;
+
+  // 500毫秒之后打开
+  setTimeout(function () {
+    lock = true;
+  }, 500);
+
+  bottomShow();
+}
+/*
+ *@functionName:
+ *@Author: 张浩楠
+ *@Date: 2021-10-31 15:59:32
+ *@param in:
+ *@param out:
+ *@return:
+ *@Description: 左按钮点击事件
+ */
+function clickLeft() {
+  if (!lock) return;
+
+  let images = document.querySelector(".img-list");
+
+  images.style.transition = "0.5s ease";
+
+  if (index === 0) {
+    images.style.marginLeft = -4 * 500 + "px";
+    images.style.transition = "none";
+
+    setTimeout(function () {
+      images.style.transition = "0.5s ease";
+      index = 3;
+      images.style.marginLeft = -3 * 500 + "px";
+    }, 0);
+  } else {
+    index--;
+    images.style.marginLeft = -index * 500 + "px";
   }
-  circulation() {
-    // debugger;
-    this.stop = setInterval(this.moveOnce, 1000);
-  }
+  lock = false;
 
-  /*
-   *@functionName: moveOnce
-   *@Author: 张浩楠
-   *@Date: 2021-10-29 18:13:01
-   *@param in:
-   *@param out:
-   *@return:
-   *@Description: 移动一次
-   */
-  moveOnce() {
-    this.divWidth += 100;
-    document.getElementById("picture").style.marginLeft = this.divWidth + "px";
+  // 500毫秒之后打开
+  setTimeout(function () {
+    lock = true;
+  }, 500);
+}
 
-    console.log(document.getElementById("picture").style.marginLeft);
+// 自动轮播
+let autoplay = setInterval(() => {
+  clickRight();
+}, 2000);
 
-    if (this.divWidth >= 2000) {
-      clearInterval(this.stop);
+/*
+ *@functionName:
+ *@Author: 张浩楠
+ *@Date: 2021-10-31 19:13:16
+ *@param in:
+ *@param out:
+ *@return:
+ *@Description: 暂停轮播
+ */
+function pause() {
+  clearInterval(autoplay);
+}
+
+/*
+ *@functionName:
+ *@Author: 张浩楠
+ *@Date: 2021-10-31 19:14:00
+ *@param in:
+ *@param out:
+ *@return:
+ *@Description: 重新开始轮播
+ */
+function rollContinue() {
+  // debugger;
+  clearInterval(autoplay);
+  autoplay = setInterval(() => {
+    clickRight();
+  }, 2000);
+}
+/*
+ *@functionName:
+ *@Author: 张浩楠
+ *@Date: 2021-10-31 19:35:46
+ *@param in:
+ *@param out:
+ *@return:
+ *@Description: 设置下标显示
+ */
+function bottomShow() {
+  debugger;
+  let list = document.getElementById("main-pointer");
+
+  list = list.getElementsByTagName("li");
+
+  for (var i = 0; i < list.length; i++) {
+    if (index === 4) {
+      list[0].style.backgroundColor = "white";
+    }
+    if (i === index) {
+      list[i].style.backgroundColor = "white";
+    } else {
+      list[i].style.backgroundColor = "blue";
     }
   }
 }
-
-var p = new SlideShow(1, 2);

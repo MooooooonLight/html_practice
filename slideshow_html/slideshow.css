@@ -1,72 +1,79 @@
-body h1 {
-  text-align: center;
+body {
+  background-color: rgb(126, 166, 240);
 }
-#main {
+body li {
+  list-style: none;
+}
+.shell {
+  z-index: 0;
   width: 500px;
-  height: 666.406px;
-  margin: auto;
+  height: 670px;
   position: relative;
   overflow: hidden;
+  border-radius: 5px;
+  border: 10px solid #fff;
+  box-shadow: 20px 30px 20px black;
+  margin: 200px auto 0;
 }
-#left {
-  margin-left: 5%;
+.img-list {
   /* margin-left: 0; */
-}
-#right {
-  margin-left: 85%;
-}
-#picture {
+  /* position: relative; */
+  height: 100%;
   display: flex;
+  transition: 0.5s ease;
+  padding: 0;
+  /* display: none; */
+  left: -500px;
 }
-
-#picture img {
+.img {
   width: 500px;
-  height: 666.406px;
-  z-index: 0;
-  display: inline-block;
 }
-.arrows {
-  cursor: pointer;
-  z-index: 1;
+.btn {
   position: absolute;
-  top: 50%;
+  top: 45%;
+  width: 500px;
+}
+.btn-left {
+  font-size: 50px;
+  /* background-color: rgba(175, 177, 173, 0.925); */
+  color: rgb(255, 0, 34);
+  opacity: 0.2;
   text-align: center;
-}
-#pointer li {
-  border: 1px, solid, white;
-  z-index: 1;
+  float: left;
   cursor: pointer;
+  /* display: none; */
+}
+.btn-right {
+  font-size: 50px;
+  /* background-color: rgba(175, 177, 173, 0.925); */
+  opacity: 0.2;
+  text-align: center;
+  float: right;
+  cursor: pointer;
+  color: rgb(255, 0, 34);
+  /* display: none; */
+}
+.btn-left:hover,
+.btn-right:hover {
+  cursor: pointer;
+  color: #fff;
+  display: block;
+  opacity: 0.5;
+  transition: 0.5s;
+}
+#main-pointer {
   position: absolute;
-  width: 50px;
-  height: 4px;
-
   bottom: 10px;
-  list-style: none;
-  background-color: rgb(150, 142, 142);
 }
-#pointer li:hover {
+.pointer {
+  height: 8px;
+  width: 60px;
+  background-color: blue;
+  display: inline-block;
+  /* position: absolute; */
+  z-index: 1;
+  margin-left: 35px;
+}
+#main-pointer :nth-child(1) {
   background-color: white;
-}
-#pointer-1 {
-  margin-left: 30px;
-}
-#pointer-2 {
-  margin-left: 130px;
-}
-#pointer-3 {
-  margin-left: 230px;
-}
-#pointer-4 {
-  margin-left: 330px;
-}
-#picture-1 {
-}
-#picture-1 :hover {
-  opacity: 1;
-}
-#picture-2 {
-}
-#picture-3 {
-}
-#picture-4 {
 }

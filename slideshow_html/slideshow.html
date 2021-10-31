@@ -1,49 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="slideshow.css" />
-    <script type="text/javascript" src="slideshow.js"></script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>轮播图片</title>
+    <link rel="stylesheet" href="slideshow.css" />
+    <script type="text/javascript" src="slideshow.js"></script>
+    <title>轮播图实现</title>
   </head>
   <body>
-    <h1>请欣赏轮播图片：</h1>
-    <!-- 主区域 -->
-    <div id="main">
-      <!-- 左箭头 -->
-      <img
-        id="left"
-        class="arrows"
-        src="./image/left.jpg"
-        alt="false"
-        width="50px"
-      />
-      <!-- 轮播图片 -->
-      <div id="picture">
-        <img id="picture-1" src="./image/2.jpg" alt="false" />
-        <img id="picture-2" src="./image/3.jpg" alt="false" />
-        <img id="picture-3" src="./image/4.jpg" alt="false" />
-        <img id="picture-4" src="./image/5.jpg" alt="false" />
-        <img id="picture-5" src="./image/2.jpg" alt="false" />
+    <!-- 主窗口 -->
+    <div class="shell" onmouseenter="pause()" onmouseleave="rollContinue()">
+      <!-- 图片区 -->
+      <div class="img-list">
+        <img class="img" src="./image/2.jpg" alt="" />
+        <img class="img" src="./image/3.jpg" alt="" />
+        <img class="img" src="./image/4.jpg" alt="" />
+        <img class="img" src="./image/5.jpg" alt="" />
+        <img class="img" src="./image/2.jpg" alt="" />
       </div>
-
-      <!-- 右箭头 -->
-      <img
-        id="right"
-        class="arrows"
-        src="./image/right.jpg"
-        alt="false"
-        width="50px"
-        onclick="p.circulation()"
-      />
-      <!-- 指示器 -->
-      <ul id="pointer">
-        <li id="pointer-1"></li>
-        <li id="pointer-2"></li>
-        <li id="pointer-3"></li>
-        <li id="pointer-4"></li>
+      <!-- 切换按钮 -->
+      <div class="btn">
+        <div class="btn-left" onclick="clickLeft()">&lt</div>
+        <div class="btn-right" onclick="clickRight()">&gt</div>
+      </div>
+      <!-- 下方标识 -->
+      <ul id="main-pointer">
+        <li class="pointer"></li>
+        <li class="pointer"></li>
+        <li class="pointer"></li>
+        <li class="pointer"></li>
       </ul>
     </div>
   </body>

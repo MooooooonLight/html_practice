@@ -7,3 +7,6 @@
 5. relative 定位下 top/right/bottom/left 效果和 margin 差不多，但是查看元素后可以发现，top/right/bottom/left 的部分不属于盒子模型的一部分
 6. float 浮动会将元素从文档流中删除，他的空间会被其它元素补上；浮动的参数物是父元素，是在父元素这个容器中飘
 7. focus 代表的是获取焦点时的样式（tab 选择的样式）
+8. 按住alt+上下方向键可以换行
+9. 按住ctrl+shift 上下方向键可以复制
+10.getElementById querySelector之间的区别
