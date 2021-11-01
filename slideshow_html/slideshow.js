@@ -151,26 +151,37 @@ function bottomShow(direction) {
  *@Description: 点击下标事件
  */
 function clickBottom(id) {
+  debugger;
   let images = document.querySelector(".img-list");
   var curPos = parseInt(images.style.marginLeft);
   if (curPos === "") {
     curPos = 0;
   }
+  var p = document.getElementById("main-pointer").getElementsByTagName("li");
+
+  for (var i = 0; i < p.length; i++) {
+    p[i].style.backgroundColor = "blue";
+  }
 
   if (id === "p1") {
     var targetPos = 0;
+    p[0].style.backgroundColor = "white";
+    index = 0;
   }
   if (id === "p2") {
-    var curPos = images.style.marginLeft;
     var targetPos = -500;
+    p[1].style.backgroundColor = "white";
+    index = 1;
   }
   if (id === "p3") {
-    var curPos = images.style.marginLeft;
     var targetPos = -1000;
+    p[2].style.backgroundColor = "white";
+    index = 2;
   }
   if (id === "p4") {
-    var curPos = images.style.marginLeft;
     var targetPos = -1500;
+    p[3].style.backgroundColor = "white";
+    index = 3;
   }
   clickMove(curPos, targetPos);
 }
@@ -186,22 +197,24 @@ function clickBottom(id) {
 function clickMove(curPos, tarPos) {
   debugger;
   clearInterval(autoplay);
-  let images = document.querySelector(".img-list");
+  var images = document.querySelector(".img-list");
   var speed;
-  if (curPos > tarPos) {
-    speed = -5;
+  var _curPos = curPos;
+  var _tarPos = tarPos;
+  if (_curPos > _tarPos) {
+    speed = -20;
   } else {
-    speed = 5;
+    speed = 20;
   }
 
   autoplay = setInterval(() => {
     debugger;
-    curPos += speed;
-    // images.style.marginLeft = curPos + "px";
-    // if (images.style.marginLeft === tarPos + "px") {
-    //   clearInterval(autoplay);
-    // }
-  }, 0);
+    _curPos += speed;
+    images.style.transition = "0.1s linear";
 
-  // rollContinue();
+    images.style.marginLeft = _curPos + "px";
+    if (images.style.marginLeft === _tarPos + "px") {
+      clearInterval(autoplay);
+    }
+  }, 0);
 }

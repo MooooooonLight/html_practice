@@ -9,7 +9,7 @@ body li {
   width: 500px;
   height: 670px;
   position: relative;
-  /* overflow: hidden; */
+  overflow: hidden;
   border-radius: 5px;
   border: 10px solid #fff;
   box-shadow: 20px 30px 20px black;
@@ -73,6 +73,10 @@ body li {
   display: inline-block;
   z-index: 1;
   margin-left: 35px;
+  cursor: pointer;
+  padding-bottom: 20px;
+}
+.pointer:hover {
   cursor: pointer;
 }
 #main-pointer :nth-child(1) {
