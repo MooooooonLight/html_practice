@@ -1,0 +1,84 @@
+body {
+  background-color: rgb(126, 166, 240);
+}
+body li {
+  list-style: none;
+}
+.shell {
+  z-index: 0;
+  width: 500px;
+  height: 670px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+  border: 10px solid #fff;
+  box-shadow: 20px 30px 20px black;
+  margin: auto;
+  margin-top: 5%;
+}
+.img-list {
+  /* margin-left: 0; */
+  /* position: relative; */
+  height: 100%;
+  display: flex;
+  transition: 0.5s ease;
+  padding: 0;
+  /* display: none; */
+  left: -500px;
+}
+.img {
+  width: 500px;
+}
+.btn {
+  position: absolute;
+  top: 45%;
+  width: 500px;
+}
+.btn-left {
+  font-size: 50px;
+  /* background-color: rgba(175, 177, 173, 0.925); */
+  color: rgb(255, 0, 34);
+  opacity: 0.2;
+  text-align: center;
+  float: left;
+  cursor: pointer;
+  /* display: none; */
+}
+.btn-right {
+  font-size: 50px;
+  /* background-color: rgba(175, 177, 173, 0.925); */
+  opacity: 0.2;
+  text-align: center;
+  float: right;
+  cursor: pointer;
+  color: rgb(255, 0, 34);
+  /* display: none; */
+}
+.btn-left:hover,
+.btn-right:hover {
+  cursor: pointer;
+  color: #fff;
+  display: block;
+  opacity: 0.5;
+  transition: 0.5s;
+}
+#main-pointer {
+  position: absolute;
+  bottom: 10px;
+}
+.pointer {
+  height: 8px;
+  width: 60px;
+  background-color: blue;
+  display: inline-block;
+  z-index: 1;
+  margin-left: 35px;
+  cursor: pointer;
+  padding-bottom: 20px;
+}
+.pointer:hover {
+  cursor: pointer;
+}
+#main-pointer :nth-child(1) {
+  background-color: white;
+}
