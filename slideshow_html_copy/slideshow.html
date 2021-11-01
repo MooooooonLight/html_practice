@@ -8,21 +8,20 @@
     <script src="slideshow.js"></script>
     <title>轮播图实现</title>
   </head>
-  <body>
+  <body id="body">
     <!-- 主窗口 -->
-    <div class="shell" onmouseenter="pause()" onmouseleave="rollContinue()">
+    <div class="shell">
       <!-- 图片区 -->
       <div class="img-list">
         <img class="img" src="./image/2.jpg" alt="" />
         <img class="img" src="./image/3.jpg" alt="" />
         <img class="img" src="./image/4.jpg" alt="" />
         <img class="img" src="./image/5.jpg" alt="" />
-        <img class="img" src="./image/2.jpg" alt="" />
       </div>
       <!-- 切换按钮 -->
       <div class="btn">
-        <div class="btn-left" onclick="clickLeft()">&lt</div>
-        <div class="btn-right" onclick="clickRight()">&gt</div>
+        <div class="btn-left">&lt</div>
+        <div class="btn-right">&gt</div>
       </div>
       <!-- 下方标识 -->
       <ul id="main-pointer">
