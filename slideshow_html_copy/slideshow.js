@@ -13,16 +13,36 @@ class SlideShow {
     this.images; //获取轮播图片块
     this.maxIndex; //最大图片数量
 
-    // 绑定事件
+    // 绑定左按钮事件
     var leftClick = document.getElementsByClassName("btn-left")[0];
     leftClick.addEventListener("click", () => {
       this.clickLeft();
     });
 
+    // 绑定右按钮事件
     var rightClick = document.getElementsByClassName("btn-right")[0];
     rightClick.addEventListener("click", () => {
       this.clickRight();
     });
+
+    // 绑定鼠标悬浮、离开事件
+    var mainDiv = document.getElementsByClassName("shell")[0];
+    mainDiv.addEventListener("mouseenter", () => {
+      clearInterval(this.autoplay);
+    });
+    mainDiv.addEventListener("mouseleave", () => {
+      clearInterval(this.autoplay);
+      this.autoPlay();
+    });
+
+    // 绑定下标点击事件
+    var pointer = document.getElementsByClassName("pointer");
+    debugger;
+    for (var i = 0; i < pointer.length; i++) {
+      pointer[i].addEventListener("click", () => {
+        this.clickBottom(pointer[i].id);
+      });
+    }
 
     // console.log("1111111", bodyClick, leftClick, rightClick);
   }
@@ -71,6 +91,14 @@ class SlideShow {
     var cloneFirst = this.images.firstElementChild.cloneNode();
     this.images.appendChild(cloneFirst);
 
+    // 添加下标圆点
+    var clone = document
+      .getElementById("main-pointer")
+      .firstElementChild.cloneNode();
+    clone.id = "p" + this.maxIndex;
+    clone.className = "pointer";
+    document.getElementById("main-pointer").appendChild(clone);
+
     // 图片最大数量++
     this.maxIndex++;
   }
@@ -84,7 +112,7 @@ class SlideShow {
    *@Description: 右按钮点击事件
    */
   clickRight() {
-    debugger;
+    // debugger;
     //  如果图片正在移动，直接退出
     if (!this.lock) return;
 
@@ -153,11 +181,57 @@ class SlideShow {
     // 移动标识
     // bottomShow("left");
   }
+  /*
+   *@functionName:
+   *@Author: 张浩楠
+   *@Date: 2021-11-02 15:29:47
+   *@param in:
+   *@param out:
+   *@return:
+   *@Description: 自动播放
+   */
+  autoPlay() {
+    this.autoplay = setInterval(() => {
+      this.clickRight();
+    }, 2000);
+  }
+  /*
+   *@functionName:
+   *@Author: 张浩楠
+   *@Date: 2021-11-02 17:10:58
+   *@param in:
+   *@param out:
+   *@return:
+   *@Description: 下标点击事件
+   */
+  clickBottom(id) {
+    debugger;
+    var curPos = parseInt(images.style.marginLeft);
+    if (curPos === "") {
+      curPos = 0;
+    }
+    var p = document.getElementById("main-pointer").getElementsByTagName("li");
+
+    for (var i = 0; i < p.length; i++) {
+      p[i].style.backgroundColor = "blue";
+    }
+
+    for (var i = 1; i <= p.length; i++) {
+      if (id === "p" + i) {
+        var targetPos = (i - 1) * -500;
+        p[i - 1].style.backgroundColor = "white";
+        index = i - 1;
+      }
+    }
+
+    clickMove(curPos, targetPos);
+  }
 }
 
-// 生成一个对象
+// 生成一个对象，并开始播放
 var p;
 window.addEventListener("DOMContentLoaded", () => {
   p = new SlideShow();
   p.init();
+  p.autoPlay();
 });
