@@ -7,11 +7,28 @@
  */
 class SlideShow {
   constructor() {
-    this.index; // 图片轮播序号
-    this.lock; //锁定，在图片轮播时，不可以操作换页
-    this.autoplay; //自动播放定时器
-    this.images; //获取轮播图片块
-    this.maxIndex; //最大图片数量
+    // 初始化成员变量
+    this.index = 0; // 图片轮播序号
+    this.lock = true; //锁定，在图片轮播时，不可以操作换页
+    this.autoplay = 0; //自动播放定时器
+    this.images = document.querySelector(".img-list"); //获取轮播图片块
+    this.maxIndex = 4; //最大图片数量
+
+    this.initial();
+  }
+  /*
+   *@functionName:
+   *@Author: 张浩楠
+   *@Date: 2021-11-02 20:23:36
+   *@param in:
+   *@param out:
+   *@return:
+   *@Description: 初始化
+   */
+  initial() {
+    // 将第一张图片复制粘贴到最后
+    var cloneFirst = this.images.firstElementChild.cloneNode();
+    this.images.appendChild(cloneFirst);
 
     // 绑定左按钮事件
     var leftClick = document.getElementsByClassName("btn-left")[0];
@@ -36,35 +53,33 @@ class SlideShow {
     });
 
     // 绑定下标点击事件
-    var pointer = document.getElementsByClassName("pointer");
-    debugger;
-    for (var i = 0; i < pointer.length; i++) {
-      pointer[i].addEventListener("click", () => {
-        this.clickBottom(pointer[i].id);
-      });
+    const love = function (event) {
+      const id = event.target.id;
+      this.clickBottom(id);
+    }.bind(this);
+    const pointer = document.getElementsByClassName("pointer");
+    for (let i = 0; i < pointer.length; i++) {
+      // let id = pointer[i].id;
+      // pointer[i].addEventListener("click", love);
+      pointer[i].onclick = love;
     }
 
-    // console.log("1111111", bodyClick, leftClick, rightClick);
-  }
-  /*
-   *@functionName:
-   *@Author: 张浩楠
-   *@Date: 2021-11-01 20:36:38
-   *@param in:
-   *@param out:
-   *@return:
-   *@Description: 初始化
-   */
-  init() {
-    this.index = 0;
-    this.lock = true;
-    this.autoplay = 0;
-    this.images = document.querySelector(".img-list");
-    this.maxIndex = 4;
-
-    // 将第一张图片复制粘贴到最后
-    var cloneFirst = this.images.firstElementChild.cloneNode();
-    this.images.appendChild(cloneFirst);
+    // 绑定切换轮播样式事件
+    document.getElementById("hover").addEventListener("click", () => {
+      this.hoverChange();
+    });
+    document.getElementById("out").addEventListener("click", () => {
+      this.outChange();
+    });
+    document.getElementById("hold").addEventListener("click", () => {
+      this.holdChange();
+    });
+    document.getElementById("card").addEventListener("click", () => {
+      this.cardChange();
+    });
+    document.getElementById("vertical").addEventListener("click", () => {
+      this.verticalChange();
+    });
   }
   /*
    *@functionName:
@@ -205,9 +220,8 @@ class SlideShow {
    *@Description: 下标点击事件
    */
   clickBottom(id) {
-    debugger;
-    var curPos = parseInt(images.style.marginLeft);
-    if (curPos === "") {
+    let curPos = parseInt(this.images.style.marginLeft);
+    if (this.images.style.marginLeft === "") {
       curPos = 0;
     }
     var p = document.getElementById("main-pointer").getElementsByTagName("li");
@@ -220,11 +234,11 @@ class SlideShow {
       if (id === "p" + i) {
         var targetPos = (i - 1) * -500;
         p[i - 1].style.backgroundColor = "white";
-        index = i - 1;
+        this.index = i - 1;
       }
     }
 
-    clickMove(curPos, targetPos);
+    this.clickMove(curPos, targetPos);
   }
   /*
    *@functionName:
@@ -236,7 +250,10 @@ class SlideShow {
    *@Description: 点击下标移动函数
    */
   clickMove(curPos, tarPos) {
+    if (!this.lock) return;
+
     clearInterval(this.autoplay);
+
     var speed;
     var _curPos = curPos;
     var _tarPos = tarPos;
@@ -248,15 +265,25 @@ class SlideShow {
     }
 
     this.autoplay = setInterval(() => {
-      debugger;
       _curPos += speed;
       this.images.style.transition = "0.1s linear";
 
       this.images.style.marginLeft = _curPos + "px";
+      if (_curPos > 0) {
+        _curPos = 0;
+      }
+      if (_curPos < -this.maxIndex * -500) {
+        _curPos = --this.maxIndex * -500;
+      }
       if (this.images.style.marginLeft === _tarPos + "px") {
         clearInterval(this.autoplay);
       }
     }, 0);
+    // 上锁，500毫秒之后打开
+    this.lock = false;
+    setTimeout(() => {
+      this.lock = true;
+    }, 200);
   }
   /*
    *@functionName:
@@ -268,7 +295,6 @@ class SlideShow {
    *@Description: 设置下标显示
    */
   bottomShow(direction) {
-    debugger;
     var list = document.getElementById("main-pointer");
 
     list = list.getElementsByTagName("li");
@@ -290,12 +316,36 @@ class SlideShow {
       }
     }
   }
+  /*
+   *@functionName:
+   *@Author: 张浩楠
+   *@Date: 2021-11-02 20:35:02
+   *@param in:
+   *@param out:
+   *@return:
+   *@Description: 悬浮切换
+   */
+  hoverChange() {
+    // 移除点击事件，添加悬浮事件
+    const pointer = document.getElementsByClassName("pointer");
+
+    const love = function (event) {
+      const id = event.target.id;
+      this.clickBottom(id);
+    }.bind(this);
+
+    for (let i = 0; i < pointer.length; i++) {
+      let id = pointer[i].id;
+      pointer[i].onclick = "";
+      pointer[i].onmouseenter = love;
+    }
+  }
 }
 
 // 生成一个对象，并开始播放
 var p;
 window.addEventListener("DOMContentLoaded", () => {
   p = new SlideShow();
-  p.init();
+  // p.init();
   p.autoPlay();
 });

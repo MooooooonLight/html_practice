@@ -10,3 +10,5 @@
 8. 按住alt+上下方向键可以换行
 9. 按住ctrl+shift 上下方向键可以复制
 10.getElementById querySelector之间的区别
+11.var和let的作用域问题
+12.
