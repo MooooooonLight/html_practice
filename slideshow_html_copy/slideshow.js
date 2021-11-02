@@ -140,7 +140,7 @@ class SlideShow {
     }, 500);
 
     // 移动标识
-    // bottomShow("right");
+    this.bottomShow("right");
   }
   /*
    *@functionName:
@@ -179,7 +179,7 @@ class SlideShow {
     }, 500);
 
     // 移动标识
-    // bottomShow("left");
+    this.bottomShow("left");
   }
   /*
    *@functionName:
@@ -225,6 +225,70 @@ class SlideShow {
     }
 
     clickMove(curPos, targetPos);
+  }
+  /*
+   *@functionName:
+   *@Author: 张浩楠
+   *@Date: 2021-11-02 18:08:17
+   *@param in:
+   *@param out:
+   *@return:
+   *@Description: 点击下标移动函数
+   */
+  clickMove(curPos, tarPos) {
+    clearInterval(this.autoplay);
+    var speed;
+    var _curPos = curPos;
+    var _tarPos = tarPos;
+
+    if (_curPos > _tarPos) {
+      speed = -20;
+    } else {
+      speed = 20;
+    }
+
+    this.autoplay = setInterval(() => {
+      debugger;
+      _curPos += speed;
+      this.images.style.transition = "0.1s linear";
+
+      this.images.style.marginLeft = _curPos + "px";
+      if (this.images.style.marginLeft === _tarPos + "px") {
+        clearInterval(this.autoplay);
+      }
+    }, 0);
+  }
+  /*
+   *@functionName:
+   *@Author: 张浩楠
+   *@Date: 2021-11-2 18:12:59
+   *@param in:
+   *@param out:
+   *@return:
+   *@Description: 设置下标显示
+   */
+  bottomShow(direction) {
+    debugger;
+    var list = document.getElementById("main-pointer");
+
+    list = list.getElementsByTagName("li");
+
+    for (var i = 0; i < list.length; i++) {
+      if (this.images.style.marginLeft === this.maxIndex * -500 + "px") {
+        if (direction === "right") {
+          list[0].style.backgroundColor = "white";
+        } else {
+          list[0].style.backgroundColor = "blue";
+          list[this.maxIndex - 1].style.backgroundColor = "white";
+          continue;
+        }
+      }
+      if (this.images.style.marginLeft === i * -500 + "px") {
+        list[i].style.backgroundColor = "white";
+      } else {
+        list[i].style.backgroundColor = "blue";
+      }
+    }
   }
 }
 
