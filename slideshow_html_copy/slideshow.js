@@ -31,22 +31,28 @@ class SlideShow {
     this.images.appendChild(cloneFirst);
 
     // 绑定左按钮事件
-    var leftClick = document.getElementsByClassName("btn-left")[0];
-    leftClick.addEventListener("click", () => {
+    const left = function () {
       this.clickLeft();
-    });
+    }.bind(this);
+
+    var rightClick = document.getElementsByClassName("btn-left")[0];
+    rightClick.onclick = left;
 
     // 绑定右按钮事件
-    var rightClick = document.getElementsByClassName("btn-right")[0];
-    rightClick.addEventListener("click", () => {
+    const right = function () {
       this.clickRight();
-    });
+    }.bind(this);
+
+    var rightClick = document.getElementsByClassName("btn-right")[0];
+    rightClick.onclick = right;
 
     // 绑定鼠标悬浮、离开事件
-    var mainDiv = document.getElementsByClassName("shell")[0];
-    mainDiv.addEventListener("mouseenter", () => {
+
+    const mouseIn = function () {
       clearInterval(this.autoplay);
-    });
+    }.bind(this);
+    var mainDiv = document.getElementsByClassName("shell")[0];
+    mainDiv.onmouseenter;
     mainDiv.addEventListener("mouseleave", () => {
       clearInterval(this.autoplay);
       this.autoPlay();
@@ -127,13 +133,11 @@ class SlideShow {
    *@Description: 右按钮点击事件
    */
   clickRight() {
-    // debugger;
+    debugger;
     //  如果图片正在移动，直接退出
     if (!this.lock) return;
-
     // 设置图片移动过度
     this.images.style.transition = "0.5s ease";
-
     // 图片序号++
     this.index++;
 
@@ -250,8 +254,6 @@ class SlideShow {
    *@Description: 点击下标移动函数
    */
   clickMove(curPos, tarPos) {
-    if (!this.lock) return;
-
     clearInterval(this.autoplay);
 
     var speed;
@@ -263,27 +265,21 @@ class SlideShow {
     } else {
       speed = 20;
     }
-
+    debugger;
     this.autoplay = setInterval(() => {
-      _curPos += speed;
-      this.images.style.transition = "0.1s linear";
+      if (_curPos - _tarPos === 0) {
+        clearInterval(this.autoplay);
+      } else {
+        _curPos += speed;
+        this.images.style.transition = "0.1s linear";
 
-      this.images.style.marginLeft = _curPos + "px";
-      if (_curPos > 0) {
-        _curPos = 0;
+        this.images.style.marginLeft = _curPos + "px";
       }
-      if (_curPos < -this.maxIndex * -500) {
-        _curPos = --this.maxIndex * -500;
-      }
-      if (this.images.style.marginLeft === _tarPos + "px") {
+
+      if (_curPos === _tarPos) {
         clearInterval(this.autoplay);
       }
     }, 0);
-    // 上锁，500毫秒之后打开
-    this.lock = false;
-    setTimeout(() => {
-      this.lock = true;
-    }, 200);
   }
   /*
    *@functionName:
@@ -339,6 +335,109 @@ class SlideShow {
       pointer[i].onclick = "";
       pointer[i].onmouseenter = love;
     }
+  }
+  /*
+   *@functionName:
+   *@Author: 张浩楠
+   *@Date: 2021-11-03 13:35:30
+   *@param in:
+   *@param out:
+   *@return:
+   *@Description: 下标显示在外
+   */
+  outChange() {
+    debugger;
+    const out = document.getElementById("main-pointer");
+    out.style.bottom = "-50px";
+  }
+  /*
+   *@functionName:
+   *@Author: 张浩楠
+   *@Date: 2021-11-03 14:27:19
+   *@param in:
+   *@param out:
+   *@return:
+   *@Description: 换页常驻
+   */
+  holdChange() {
+    document.getElementsByClassName("btn-left")[0].style.display = "block";
+    document.getElementsByClassName("btn-right")[0].style.display = "block";
+  }
+  /*
+   *@functionName:
+   *@Author: 张浩楠
+   *@Date: 2021-11-03 15:11:04
+   *@param in:
+   *@param out:
+   *@return:
+   *@Description: 卡片化
+   */
+  cardChange() {
+    clearInterval(this.autoplay);
+    // 添加图片
+    debugger;
+    let clone = this.images.getElementsByClassName("img")[1].cloneNode();
+    this.images.appendChild(clone);
+    this.maxIndex++;
+    clone = this.images
+      .getElementsByClassName("img")
+      [this.maxIndex - 2].cloneNode();
+    this.images.insertBefore(clone, this.images.firstElementChild);
+    this.maxIndex++;
+    clone = this.images
+      .getElementsByClassName("img")
+      [this.maxIndex - 3].cloneNode();
+    this.images.insertBefore(clone, this.images.firstElementChild);
+    this.maxIndex++;
+
+    // 设置主窗口宽度
+    document.getElementsByClassName("shell")[0].style.width = "1500px";
+
+    // 设置起始位置，图片序号
+    this.images.style.marginLeft = "-1000px";
+
+    // 更改绑定事件
+
+    // 开始卡片化轮播
+    this.cardAuto();
+  }
+  /*
+   *@functionName:
+   *@Author: 张浩楠
+   *@Date: 2021-11-03 17:09:19
+   *@param in:
+   *@param out:
+   *@return:
+   *@Description: 卡片化图片右移
+   */
+  cardRight() {
+    //  如果图片正在移动，直接退出
+    if (!this.lock) return;
+    // 设置图片移动过度
+    this.images.style.transition = "0.5s ease";
+    // 图片序号++
+    this.index = 0;
+    this.index++;
+
+    //如果到最后一张图片，则回到第一张
+    if (this.index === this.maxIndex) {
+      setTimeout(() => {
+        this.images.style.marginLeft = 0;
+        this.index = 0;
+        this.images.style.transition = "none";
+      }, 500);
+    }
+
+    this.images.style.marginLeft = -this.index * 500 + "px";
+
+    // 上锁，500毫秒之后打开
+    this.lock = false;
+    setTimeout(() => {
+      this.lock = true;
+    }, 500);
+
+    // 移动标识
+    this.bottomShow("right");
   }
 }
 
