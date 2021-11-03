@@ -8,6 +8,7 @@
 class SlideShow {
   constructor() {
     // 初始化成员变量
+    this.change = false; //是否切换过
     this.index = 0; // 图片轮播序号
     this.lock = true; //锁定，在图片轮播时，不可以操作换页
     this.autoplay = 0; //自动播放定时器
@@ -373,9 +374,10 @@ class SlideShow {
    *@Description: 卡片化
    */
   cardChange() {
+    if (this.change) return;
+
     clearInterval(this.autoplay);
     // 添加图片
-    debugger;
     let clone = this.images.getElementsByClassName("img")[1].cloneNode();
     this.images.appendChild(clone);
     this.maxIndex++;
@@ -393,10 +395,77 @@ class SlideShow {
     // 设置主窗口宽度
     document.getElementsByClassName("shell")[0].style.width = "1500px";
 
+    // 右换行位置
+    document.getElementsByClassName("btn-right")[0].style.marginLeft = "1463px";
+
     // 设置起始位置，图片序号
-    this.images.style.marginLeft = "-1000px";
+
+    this.images.style.marginLeft = "-500px";
+    this.images.style.transition = "0s ease";
+
+    this.images.getElementsByClassName("img")[1].style.transform =
+      "scaleY(0.8)";
+    this.images.getElementsByClassName("img")[3].style.transform =
+      "scaleY(0.8)";
+
+    // 初始化图片序号
+    this.index = 1;
 
     // 更改绑定事件
+    this.changeBind();
+
+    this.change = true;
+  }
+  /*
+   *@functionName:
+   *@Author: 张浩楠
+   *@Date: 2021-11-03 20:15:21
+   *@param in:
+   *@param out:
+   *@return:
+   *@Description: 更改事件绑定
+   */
+  changeBind() {
+    // 绑定左按钮事件
+    const left = function () {
+      this.cardLeft();
+    }.bind(this);
+
+    var rightClick = document.getElementsByClassName("btn-left")[0];
+    rightClick.onclick = left;
+
+    // 绑定右按钮事件
+    const right = function () {
+      this.cardRight();
+    }.bind(this);
+
+    var rightClick = document.getElementsByClassName("btn-right")[0];
+    rightClick.onclick = right;
+
+    // 绑定鼠标悬浮、离开事件
+    const mouseIn = function () {
+      clearInterval(this.autoplay);
+    }.bind(this);
+
+    const mouseOut = function () {
+      this.cardAuto();
+    }.bind(this);
+    var mainDiv = document.getElementsByClassName("shell")[0];
+    mainDiv.onmouseenter = mouseIn;
+
+    mainDiv.onmouseleave = mouseOut;
+
+    // 绑定下标点击事件
+    const love = function (event) {
+      const id = event.target.id;
+      this.cardBottom(id);
+    }.bind(this);
+    const pointer = document.getElementsByClassName("pointer");
+    for (let i = 0; i < pointer.length; i++) {
+      // let id = pointer[i].id;
+      // pointer[i].addEventListener("click", love);
+      pointer[i].onclick = love;
+    }
 
     // 开始卡片化轮播
     this.cardAuto();
@@ -411,24 +480,36 @@ class SlideShow {
    *@Description: 卡片化图片右移
    */
   cardRight() {
+    debugger;
+    let imageList = this.images.getElementsByClassName("img");
+
     //  如果图片正在移动，直接退出
     if (!this.lock) return;
     // 设置图片移动过度
     this.images.style.transition = "0.5s ease";
     // 图片序号++
-    this.index = 0;
     this.index++;
 
-    //如果到最后一张图片，则回到第一张
-    if (this.index === this.maxIndex) {
+    //如果到倒数第三张图片，则回到第二张
+    if (this.index === this.maxIndex - 2) {
       setTimeout(() => {
-        this.images.style.marginLeft = 0;
-        this.index = 0;
+        this.images.style.marginLeft = "-500px";
+        this.index = 1;
+        imageList[this.index + 1].style.transform = "scaleY(1)";
         this.images.style.transition = "none";
       }, 500);
     }
 
     this.images.style.marginLeft = -this.index * 500 + "px";
+
+    // 设置上一张和下一张图片变小
+    for (let i = 0; i < imageList.length; i++) {
+      if (i === this.index + 1) {
+        imageList[i].style.transform = "scaleY(1)";
+      } else {
+        imageList[i].style.transform = "scaleY(0.8)";
+      }
+    }
 
     // 上锁，500毫秒之后打开
     this.lock = false;
@@ -437,7 +518,74 @@ class SlideShow {
     }, 500);
 
     // 移动标识
-    this.bottomShow("right");
+    // this.bottomShow("right");
+  }
+  /*
+   *@functionName:
+   *@Author: 张浩楠
+   *@Date: 2021-11-03 20:38:18
+   *@param in:
+   *@param out:
+   *@return:
+   *@Description: 卡片化左移
+   */
+  cardLeft() {
+    //  如果图片正在移动，直接退出
+    if (!this.lock) return;
+
+    let imageList = this.images.getElementsByClassName("img");
+
+    // 设置图片移动过度
+    this.images.style.transition = "0.5s ease";
+
+    //如果在第一张图片，则回到倒数第三张
+    if (this.index === 1) {
+      this.images.style.marginLeft = -(this.maxIndex - 2) * 500 + "px";
+      this.images.style.transition = "none";
+      setTimeout(() => {
+        this.images.style.transition = "0.5s ease";
+        this.index = this.maxIndex - 3;
+        this.images.style.marginLeft = -this.index * 500 + "px";
+        imageList[this.index + 1].style.transform = "scaleY(1)";
+      }, 0);
+    } else {
+      this.index--;
+      this.images.style.marginLeft = -this.index * 500 + "px";
+    }
+
+    // 设置上一张和下一张图片变小
+    for (let i = 0; i < imageList.length; i++) {
+      if (i === this.index + 1) {
+        imageList[i].style.transform = "scaleY(1)";
+      } else {
+        imageList[i].style.transform = "scaleY(0.8)";
+      }
+    }
+
+    // 上锁，500毫秒之后打开
+    this.lock = false;
+    setTimeout(() => {
+      this.lock = true;
+    }, 500);
+
+    // 移动标识
+    // this.bottomShow("left");
+  }
+  /*
+   *@functionName:
+   *@Author: 张浩楠
+   *@Date: 2021-11-03 21:56:21
+   *@param in:
+   *@param out:
+   *@return:
+   *@Description: 卡片式自动播放
+   */
+  cardAuto() {
+    clearInterval(this.autoplay);
+    debugger;
+    this.autoplay = setInterval(() => {
+      this.cardRight();
+    }, 2000);
   }
 }
 
@@ -446,5 +594,5 @@ var p;
 window.addEventListener("DOMContentLoaded", () => {
   p = new SlideShow();
   // p.init();
-  p.autoPlay();
+  // p.autoPlay();
 });

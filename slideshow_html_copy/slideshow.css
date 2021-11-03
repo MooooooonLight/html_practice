@@ -8,7 +8,7 @@ body li {
 .shell {
   width: 500px;
   height: 670px;
-  /* overflow: hidden; */
+  overflow: hidden;
   position: relative;
   border-radius: 5px;
   border: 10px solid #fff;
@@ -53,7 +53,7 @@ body li {
   font-size: 50px;
   opacity: 0.5;
   text-align: center;
-  float: right;
+  margin-left: 463px;
   cursor: pointer;
   color: rgb(255, 0, 34);
   display: none;
