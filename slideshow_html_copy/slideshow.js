@@ -6,16 +6,27 @@
  *@Description: 轮播图类
  */
 class SlideShow {
-  constructor() {
+  constructor(imageWidth, type) {
     // 初始化成员变量
+    if (type === "normal") {
+      this.index = 0; // 图片轮播序号
+    } else {
+      this.index = 1; // 图片轮播序号
+      document.getElementsByClassName("shell")[0].style.width =
+        3 * imageWidth + "px"; // 设置窗口大小
+    }
+
     this.change = false; //是否切换过
-    this.index = 0; // 图片轮播序号
     this.lock = true; //锁定，在图片轮播时，不可以操作换页
     this.autoplay = 0; //自动播放定时器
     this.images = document.querySelector(".img-list"); //获取轮播图片块
-    this.maxIndex = 4; //最大图片数量
+    // 绑定获取图片事件
+    const img = function () {
+      this.getImageList();
+    }.bind(this);
 
-    this.initial();
+    var imgList = document.getElementById("input");
+    imgList.onchange = img;
   }
   /*
    *@functionName:
@@ -140,6 +151,7 @@ class SlideShow {
     this.images.style.transition = "0.5s ease";
     // 图片序号++
     this.index++;
+    debugger;
 
     //如果到最后一张图片，则回到第一张
     if (this.index === this.maxIndex) {
@@ -583,12 +595,35 @@ class SlideShow {
       this.cardRight();
     }, 2000);
   }
+  /*
+   *@functionName:
+   *@Author: 张浩楠
+   *@Date: 2021-11-04 20:57:51
+   *@param in:
+   *@param out:
+   *@return:
+   *@Description: 获取图片
+   */
+  getImageList() {
+    let file = document.getElementById("input").files;
+
+    // 图片设置进DOM
+    for (let i = 0; i < file.length; i++) {
+      let img = document.createElement("img");
+      img.className = "img";
+      img.src = URL.createObjectURL(file[i]);
+      this.images.appendChild(img);
+    }
+    this.maxIndex = this.images.getElementsByTagName("img"); //最大图片数量
+
+    this.initial();
+  }
 }
 
-// 生成一个对象，并开始播放
+// 生成一个对象，加入图片，设置模式并开始播放
 var p;
+
 window.addEventListener("DOMContentLoaded", () => {
-  p = new SlideShow();
-  // p.init();
+  p = new SlideShow(100, "normal");
   // p.autoPlay();
 });
