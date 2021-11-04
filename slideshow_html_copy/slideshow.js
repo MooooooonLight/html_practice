@@ -134,7 +134,6 @@ class SlideShow {
    *@Description: 右按钮点击事件
    */
   clickRight() {
-    debugger;
     //  如果图片正在移动，直接退出
     if (!this.lock) return;
     // 设置图片移动过度
@@ -394,9 +393,6 @@ class SlideShow {
 
     // 设置主窗口宽度
     document.getElementsByClassName("shell")[0].style.width = "1500px";
-
-    // 右换行位置
-    document.getElementsByClassName("btn-right")[0].style.marginLeft = "1463px";
 
     // 设置起始位置，图片序号
 

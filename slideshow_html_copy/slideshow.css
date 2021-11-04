@@ -38,7 +38,7 @@ body li {
 .btn {
   position: absolute;
   top: 45%;
-  width: 500px;
+  width: 100%;
 }
 .btn-left {
   font-size: 50px;
@@ -53,7 +53,7 @@ body li {
   font-size: 50px;
   opacity: 0.5;
   text-align: center;
-  margin-left: 463px;
+  float: right;
   cursor: pointer;
   color: rgb(255, 0, 34);
   display: none;
