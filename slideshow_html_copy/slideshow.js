@@ -7,19 +7,25 @@
  */
 class SlideShow {
   constructor(imageWidth, type) {
-    // 初始化成员变量
-    if (type === "normal") {
-      this.index = 0; // 图片轮播序号
-    } else {
-      this.index = 1; // 图片轮播序号
-      document.getElementsByClassName("shell")[0].style.width =
-        3 * imageWidth + "px"; // 设置窗口大小
-    }
-
     this.change = false; //是否切换过
     this.lock = true; //锁定，在图片轮播时，不可以操作换页
     this.autoplay = 0; //自动播放定时器
+    debugger;
     this.images = document.querySelector(".img-list"); //获取轮播图片块
+    this.type = type;
+    this.width = imageWidth;
+
+    // 判断轮播模式
+    if (this.type === "normal") {
+      this.index = 0; // 图片轮播序号
+      document.getElementsByClassName("shell")[0].style.width =
+        this.width + "px"; // 设置窗口大小
+    } else {
+      this.index = 1; // 图片轮播序号
+      document.getElementsByClassName("shell")[0].style.width =
+        3 * this.width + "px"; // 设置窗口大小
+    }
+
     // 绑定获取图片事件
     const img = function () {
       this.getImageList();
@@ -38,48 +44,51 @@ class SlideShow {
    *@Description: 初始化
    */
   initial() {
-    // 将第一张图片复制粘贴到最后
-    var cloneFirst = this.images.firstElementChild.cloneNode();
-    this.images.appendChild(cloneFirst);
+    if (this.type === "normal") {
+      // 将第一张图片复制粘贴到最后
+      var cloneFirst = this.images.firstElementChild.cloneNode();
+      this.images.appendChild(cloneFirst);
 
-    // 绑定左按钮事件
-    const left = function () {
-      this.clickLeft();
-    }.bind(this);
+      // 绑定左按钮事件
+      const left = function () {
+        this.clickLeft();
+      }.bind(this);
 
-    var rightClick = document.getElementsByClassName("btn-left")[0];
-    rightClick.onclick = left;
+      var rightClick = document.getElementsByClassName("btn-left")[0];
+      rightClick.onclick = left;
 
-    // 绑定右按钮事件
-    const right = function () {
-      this.clickRight();
-    }.bind(this);
+      // 绑定右按钮事件
+      const right = function () {
+        this.clickRight();
+      }.bind(this);
 
-    var rightClick = document.getElementsByClassName("btn-right")[0];
-    rightClick.onclick = right;
+      var rightClick = document.getElementsByClassName("btn-right")[0];
+      rightClick.onclick = right;
 
-    // 绑定鼠标悬浮、离开事件
+      // 绑定鼠标悬浮、离开事件
+      const mouseIn = function () {
+        clearInterval(this.autoplay);
+      }.bind(this);
+      var mainDiv = document.getElementsByClassName("shell")[0];
+      mainDiv.onmouseenter;
+      mainDiv.addEventListener("mouseleave", () => {
+        clearInterval(this.autoplay);
+        this.autoPlay();
+      });
 
-    const mouseIn = function () {
-      clearInterval(this.autoplay);
-    }.bind(this);
-    var mainDiv = document.getElementsByClassName("shell")[0];
-    mainDiv.onmouseenter;
-    mainDiv.addEventListener("mouseleave", () => {
-      clearInterval(this.autoplay);
+      // 绑定下标点击事件
+      const love = function (event) {
+        const id = event.target.id;
+        this.clickBottom(id);
+      }.bind(this);
+      const pointer = document.getElementsByClassName("pointer");
+      for (let i = 0; i < pointer.length; i++) {
+        pointer[i].onclick = love;
+      }
+
       this.autoPlay();
-    });
-
-    // 绑定下标点击事件
-    const love = function (event) {
-      const id = event.target.id;
-      this.clickBottom(id);
-    }.bind(this);
-    const pointer = document.getElementsByClassName("pointer");
-    for (let i = 0; i < pointer.length; i++) {
-      // let id = pointer[i].id;
-      // pointer[i].addEventListener("click", love);
-      pointer[i].onclick = love;
+    } else {
+      this.cardChange();
     }
 
     // 绑定切换轮播样式事件
@@ -98,42 +107,6 @@ class SlideShow {
     document.getElementById("vertical").addEventListener("click", () => {
       this.verticalChange();
     });
-  }
-  /*
-   *@functionName:
-   *@Author: 张浩楠
-   *@Date: 2021-11-01 18:59:28
-   *@param in:
-   *@param out:
-   *@return:
-   *@Description: 添加轮播图片
-   */
-  addPictures(src) {
-    var img = document.createElement("img");
-    img.src = src;
-    img.className = "img";
-
-    // 先删除最后一张图片
-    var lastImg = this.images.lastElementChild;
-    this.images.lastElementChild.removeChild(lastImg);
-
-    // 添加新的图片
-    this.images.appendChild(img);
-
-    // 复制第一张图片添加到最后
-    var cloneFirst = this.images.firstElementChild.cloneNode();
-    this.images.appendChild(cloneFirst);
-
-    // 添加下标圆点
-    var clone = document
-      .getElementById("main-pointer")
-      .firstElementChild.cloneNode();
-    clone.id = "p" + this.maxIndex;
-    clone.className = "pointer";
-    document.getElementById("main-pointer").appendChild(clone);
-
-    // 图片最大数量++
-    this.maxIndex++;
   }
   /*
    *@functionName:
@@ -385,10 +358,9 @@ class SlideShow {
    *@Description: 卡片化
    */
   cardChange() {
-    if (this.change) return;
-
-    clearInterval(this.autoplay);
     // 添加图片
+    let cloneFirst = this.images.firstElementChild.cloneNode();
+    this.images.appendChild(cloneFirst);
     let clone = this.images.getElementsByClassName("img")[1].cloneNode();
     this.images.appendChild(clone);
     this.maxIndex++;
@@ -403,21 +375,14 @@ class SlideShow {
     this.images.insertBefore(clone, this.images.firstElementChild);
     this.maxIndex++;
 
-    // 设置主窗口宽度
-    document.getElementsByClassName("shell")[0].style.width = "1500px";
-
     // 设置起始位置，图片序号
-
-    this.images.style.marginLeft = "-500px";
+    this.images.style.marginLeft = -this.width + "px";
     this.images.style.transition = "0s ease";
 
     this.images.getElementsByClassName("img")[1].style.transform =
       "scaleY(0.8)";
     this.images.getElementsByClassName("img")[3].style.transform =
       "scaleY(0.8)";
-
-    // 初始化图片序号
-    this.index = 1;
 
     // 更改绑定事件
     this.changeBind();
@@ -614,7 +579,7 @@ class SlideShow {
       img.src = URL.createObjectURL(file[i]);
       this.images.appendChild(img);
     }
-    this.maxIndex = this.images.getElementsByTagName("img"); //最大图片数量
+    this.maxIndex = this.images.getElementsByTagName("img").length; //最大图片数量
 
     this.initial();
   }
@@ -622,8 +587,6 @@ class SlideShow {
 
 // 生成一个对象，加入图片，设置模式并开始播放
 var p;
-
 window.addEventListener("DOMContentLoaded", () => {
-  p = new SlideShow(100, "normal");
-  // p.autoPlay();
+  p = new SlideShow(500, "card");
 });
