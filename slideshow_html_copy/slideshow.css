@@ -64,12 +64,12 @@ body li {
   color: #fff;
 }
 #main-pointer {
-  width: 175px;
   position: relative;
   left: 0px;
   z-index: 9999;
   bottom: 50px;
   margin: 0 auto;
+  text-align: center;
 }
 .pointer {
   height: 20px;

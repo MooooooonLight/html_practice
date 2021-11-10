@@ -10,11 +10,12 @@ class SlideShow {
     this.change = false; //是否切换过
     this.lock = true; //锁定，在图片轮播时，不可以操作换页
     this.autoplay = 0; //自动播放定时器
-    debugger;
     this.images = document.querySelector(".img-list"); //获取轮播图片块
     this.type = type;
     this.width = imageWidth;
-
+    this.hover = false;
+    this.out = false;
+    this.hold = false;
     // 判断轮播模式
     if (this.type === "normal") {
       this.index = 0; // 图片轮播序号
@@ -44,6 +45,25 @@ class SlideShow {
    *@Description: 初始化
    */
   initial() {
+    // 设置下标圆点显示
+    let pointer = document.getElementsByClassName("pointer");
+    for (let i = pointer.length + 1; i <= this.maxIndex; i++) {
+      let clone = pointer[0].cloneNode();
+      clone.id = "p" + i;
+      document.getElementById("main-pointer").appendChild(clone);
+    }
+
+    // 绑定切换轮播样式事件
+    document.getElementById("hover").addEventListener("click", () => {
+      this.hoverChange();
+    });
+    document.getElementById("out").addEventListener("click", () => {
+      this.outChange();
+    });
+    document.getElementById("hold").addEventListener("click", () => {
+      this.holdChange();
+    });
+
     if (this.type === "normal") {
       // 将第一张图片复制粘贴到最后
       var cloneFirst = this.images.firstElementChild.cloneNode();
@@ -75,7 +95,6 @@ class SlideShow {
         clearInterval(this.autoplay);
         this.autoPlay();
       });
-
       // 绑定下标点击事件
       const love = function (event) {
         const id = event.target.id;
@@ -88,25 +107,18 @@ class SlideShow {
 
       this.autoPlay();
     } else {
+      // 绑定下标点击事件
+      const love = function (event) {
+        const id = event.target.id;
+        this.clickBottom(id);
+      }.bind(this);
+      const pointer = document.getElementsByClassName("pointer");
+      for (let i = 0; i < pointer.length; i++) {
+        pointer[i].onclick = love;
+      }
+
       this.cardChange();
     }
-
-    // 绑定切换轮播样式事件
-    document.getElementById("hover").addEventListener("click", () => {
-      this.hoverChange();
-    });
-    document.getElementById("out").addEventListener("click", () => {
-      this.outChange();
-    });
-    document.getElementById("hold").addEventListener("click", () => {
-      this.holdChange();
-    });
-    document.getElementById("card").addEventListener("click", () => {
-      this.cardChange();
-    });
-    document.getElementById("vertical").addEventListener("click", () => {
-      this.verticalChange();
-    });
   }
   /*
    *@functionName:
@@ -210,24 +222,46 @@ class SlideShow {
    */
   clickBottom(id) {
     let curPos = parseInt(this.images.style.marginLeft);
+
     if (this.images.style.marginLeft === "") {
       curPos = 0;
     }
-    var p = document.getElementById("main-pointer").getElementsByTagName("li");
 
-    for (var i = 0; i < p.length; i++) {
-      p[i].style.backgroundColor = "blue";
-    }
+    if (this.type === "normal") {
+      var p = document
+        .getElementById("main-pointer")
+        .getElementsByTagName("li");
 
-    for (var i = 1; i <= p.length; i++) {
-      if (id === "p" + i) {
-        var targetPos = (i - 1) * -500;
-        p[i - 1].style.backgroundColor = "white";
-        this.index = i - 1;
+      for (var i = 0; i < p.length; i++) {
+        p[i].style.backgroundColor = "blue";
+      }
+
+      for (var i = 1; i <= p.length; i++) {
+        if (id === "p" + i) {
+          var targetPos = (i - 1) * -this.width;
+          p[i - 1].style.backgroundColor = "white";
+          this.index = i - 1;
+        }
+      }
+    } else {
+      var p = document
+        .getElementById("main-pointer")
+        .getElementsByTagName("li");
+
+      for (var i = 0; i < p.length; i++) {
+        p[i].style.backgroundColor = "blue";
+      }
+
+      for (var i = 1; i <= p.length; i++) {
+        if (id === "p" + i) {
+          var targetPos = i * -this.width;
+          p[i - 1].style.backgroundColor = "white";
+          this.index = i - 1;
+        }
       }
     }
 
-    this.clickMove(curPos, targetPos);
+    this.clickMove(curPos, targetPos, id);
   }
   /*
    *@functionName:
@@ -238,7 +272,7 @@ class SlideShow {
    *@return:
    *@Description: 点击下标移动函数
    */
-  clickMove(curPos, tarPos) {
+  clickMove(curPos, tarPos, id) {
     clearInterval(this.autoplay);
 
     var speed;
@@ -250,7 +284,6 @@ class SlideShow {
     } else {
       speed = 20;
     }
-    debugger;
     this.autoplay = setInterval(() => {
       if (_curPos - _tarPos === 0) {
         clearInterval(this.autoplay);
@@ -265,6 +298,18 @@ class SlideShow {
         clearInterval(this.autoplay);
       }
     }, 0);
+
+    if (this.type === "card") {
+      // 设置上一张和下一张图片变小
+      let cur = parseInt(id.substr(1, 1));
+      let last = cur - 1;
+      let next = cur + 1;
+      debugger;
+      let imageList = document.getElementsByClassName("img");
+      for (let i = 0; i < imageList.length; i++) {
+        imageList[i].style.transform = "scaleY(1)";
+      }
+    }
   }
   /*
    *@functionName:
@@ -279,21 +324,47 @@ class SlideShow {
     var list = document.getElementById("main-pointer");
 
     list = list.getElementsByTagName("li");
-
-    for (var i = 0; i < list.length; i++) {
-      if (this.images.style.marginLeft === this.maxIndex * -500 + "px") {
-        if (direction === "right") {
-          list[0].style.backgroundColor = "white";
+    if (this.type === "normal") {
+      for (var i = 0; i < list.length; i++) {
+        if (
+          this.images.style.marginLeft ===
+          this.maxIndex * -this.width + "px"
+        ) {
+          if (direction === "right") {
+            list[0].style.backgroundColor = "white";
+          } else {
+            list[0].style.backgroundColor = "blue";
+            list[this.maxIndex - 1].style.backgroundColor = "white";
+            continue;
+          }
+        }
+        if (this.images.style.marginLeft === i * -this.width + "px") {
+          list[i].style.backgroundColor = "white";
         } else {
-          list[0].style.backgroundColor = "blue";
-          list[this.maxIndex - 1].style.backgroundColor = "white";
-          continue;
+          list[i].style.backgroundColor = "blue";
         }
       }
-      if (this.images.style.marginLeft === i * -500 + "px") {
-        list[i].style.backgroundColor = "white";
-      } else {
-        list[i].style.backgroundColor = "blue";
+    } else {
+      for (var i = 0; i < list.length; i++) {
+        if (
+          this.images.style.marginLeft ===
+          (this.maxIndex - 2) * -this.width + "px"
+        ) {
+          if (direction === "right") {
+            list[0].style.backgroundColor = "white";
+          } else {
+            debugger;
+            list[0].style.backgroundColor = "blue";
+            list[this.maxIndex - 4].style.backgroundColor = "white";
+            continue;
+          }
+        }
+
+        if (this.images.style.marginLeft === (i + 1) * -this.width + "px") {
+          list[i].style.backgroundColor = "white";
+        } else {
+          list[i].style.backgroundColor = "blue";
+        }
       }
     }
   }
@@ -307,7 +378,6 @@ class SlideShow {
    *@Description: 悬浮切换
    */
   hoverChange() {
-    // 移除点击事件，添加悬浮事件
     const pointer = document.getElementsByClassName("pointer");
 
     const love = function (event) {
@@ -315,10 +385,20 @@ class SlideShow {
       this.clickBottom(id);
     }.bind(this);
 
-    for (let i = 0; i < pointer.length; i++) {
-      let id = pointer[i].id;
-      pointer[i].onclick = "";
-      pointer[i].onmouseenter = love;
+    if (this.hover) {
+      for (let i = 0; i < pointer.length; i++) {
+        let id = pointer[i].id;
+        pointer[i].onmouseenter = "";
+        pointer[i].onclick = love;
+      }
+      this.hover = false;
+    } else {
+      for (let i = 0; i < pointer.length; i++) {
+        let id = pointer[i].id;
+        pointer[i].onclick = "";
+        pointer[i].onmouseenter = love;
+      }
+      this.hover = true;
     }
   }
   /*
@@ -331,9 +411,14 @@ class SlideShow {
    *@Description: 下标显示在外
    */
   outChange() {
-    debugger;
     const out = document.getElementById("main-pointer");
-    out.style.bottom = "-50px";
+    if (this.out) {
+      out.style.bottom = "50px";
+      this.out = false;
+    } else {
+      out.style.bottom = "-50px";
+      this.out = true;
+    }
   }
   /*
    *@functionName:
@@ -345,8 +430,15 @@ class SlideShow {
    *@Description: 换页常驻
    */
   holdChange() {
-    document.getElementsByClassName("btn-left")[0].style.display = "block";
-    document.getElementsByClassName("btn-right")[0].style.display = "block";
+    if (this.hold) {
+      document.getElementsByClassName("btn-left")[0].style.display = "none";
+      document.getElementsByClassName("btn-right")[0].style.display = "none";
+      this.hold = false;
+    } else {
+      document.getElementsByClassName("btn-left")[0].style.display = "block";
+      document.getElementsByClassName("btn-right")[0].style.display = "block";
+      this.hold = true;
+    }
   }
   /*
    *@functionName:
@@ -428,18 +520,6 @@ class SlideShow {
 
     mainDiv.onmouseleave = mouseOut;
 
-    // 绑定下标点击事件
-    const love = function (event) {
-      const id = event.target.id;
-      this.cardBottom(id);
-    }.bind(this);
-    const pointer = document.getElementsByClassName("pointer");
-    for (let i = 0; i < pointer.length; i++) {
-      // let id = pointer[i].id;
-      // pointer[i].addEventListener("click", love);
-      pointer[i].onclick = love;
-    }
-
     // 开始卡片化轮播
     this.cardAuto();
   }
@@ -453,7 +533,6 @@ class SlideShow {
    *@Description: 卡片化图片右移
    */
   cardRight() {
-    debugger;
     let imageList = this.images.getElementsByClassName("img");
 
     //  如果图片正在移动，直接退出
@@ -491,7 +570,7 @@ class SlideShow {
     }, 500);
 
     // 移动标识
-    // this.bottomShow("right");
+    this.bottomShow("right");
   }
   /*
    *@functionName:
@@ -542,7 +621,7 @@ class SlideShow {
     }, 500);
 
     // 移动标识
-    // this.bottomShow("left");
+    this.bottomShow("left");
   }
   /*
    *@functionName:
@@ -555,7 +634,6 @@ class SlideShow {
    */
   cardAuto() {
     clearInterval(this.autoplay);
-    debugger;
     this.autoplay = setInterval(() => {
       this.cardRight();
     }, 2000);
