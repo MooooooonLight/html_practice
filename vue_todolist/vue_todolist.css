@@ -1,0 +1,25 @@
+li {
+  list-style: none;
+  border: 2px solid;
+  width: 100%;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+ul {
+  padding: 0;
+}
+
+#main-window {
+  width: 350px;
+  margin: auto;
+  margin-top: 5%;
+}
+#del {
+  padding: 0;
+  border: 0;
+  float: right;
+  background-color: red;
+  height: 22px;
+  cursor: pointer;
+}

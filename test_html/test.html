@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+    <script src="../vue.global.js"></script>
+    <script src="../vue-router.global.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script type="text/javascript">
+      const myMixin = {
+        data() {
+          return {
+            message: "hello",
+            foo: "runoob",
+          };
+        },
+      };
+
+      const app = Vue.createApp({
+        data() {
+          return {
+            message: "goodbye",
+            bar: "def",
+          };
+        },
+        created() {
+          document.write(JSON.stringify(this.$data));
+        },
+        mixins: [myMixin],
+      });
+
+      app.mount("#app");
+    </script>
+  </body>
+</html>
