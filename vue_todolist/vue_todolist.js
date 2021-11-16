@@ -12,18 +12,17 @@ const app = Vue.createApp({
   },
   methods: {
     addNewTodoItem() {
-      let liList = document.getElementsByTagName("li");
-      for (let i = 0; i < liList.length; i++) {
-        if (
-          this.newTodoText.replace(/\s+/g, "") ===
-          liList[i].innerText.split("\n")[0]
-        ) {
+      for (let i = 0; i < this.todos.length; i++) {
+        debugger;
+        if (this.newTodoText.replace(/\s+/g, "") === this.todos[i].text) {
           alert("瞎？");
+          this.newTodoText = "";
           return;
         }
       }
       if (this.newTodoText.replace(/\s+/g, "") === "") {
         alert("没事干别动");
+        this.newTodoText = "";
         return;
       }
       this.todos.push({ id: this.nextTodoId++, text: this.newTodoText });

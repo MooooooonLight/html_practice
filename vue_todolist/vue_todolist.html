@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="../vue.global.js"></script>
-    <!-- <script src="vue_todolist.js"></script> -->
     <link rel="stylesheet" href="vue_todolist.css" />
     <title>Document</title>
   </head>
@@ -29,53 +28,6 @@
     </div>
 
     <!-- js部分 -->
-    <script>
-      const app = Vue.createApp({
-        data() {
-          return {
-            newTodoText: "",
-            todos: [
-              { id: 1, text: "打游戏" },
-              { id: 2, text: "睡觉" },
-              { id: 3, text: "吃饭" },
-            ],
-            nextTodoId: 4,
-          };
-        },
-        methods: {
-          addNewTodoItem() {
-            let liList = document.getElementsByTagName("li");
-            for (let i = 0; i < liList.length; i++) {
-              if (
-                this.newTodoText.replace(/\s+/g, "") ===
-                liList[i].innerText.split("\n")[0]
-              ) {
-                alert("瞎？");
-                this.newTodoText = "";
-                return;
-              }
-            }
-            if (this.newTodoText.replace(/\s+/g, "") === "") {
-              alert("没事干别动");
-              this.newTodoText = "";
-              return;
-            }
-            this.todos.push({ id: this.nextTodoId++, text: this.newTodoText });
-            this.newTodoText = "";
-          },
-        },
-      });
-
-      app.component("todo-item", {
-        template: `<li>
-           {{text}}
-           <button id="del" @click="$emit('remove')">删除</button>
-           </li>`,
-        props: ["text"],
-        emits: ["remove"],
-      });
-
-      app.mount("#main-window");
-    </script>
+    <script src="vue_todolist.js"></script>
   </body>
 </html>
