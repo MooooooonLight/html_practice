@@ -13,7 +13,6 @@ const app = Vue.createApp({
   methods: {
     addNewTodoItem() {
       for (let i = 0; i < this.todos.length; i++) {
-        debugger;
         if (this.newTodoText.replace(/\s+/g, "") === this.todos[i].text) {
           alert("瞎？");
           this.newTodoText = "";

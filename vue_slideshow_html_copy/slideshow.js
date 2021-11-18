@@ -664,7 +664,16 @@ class SlideShow {
 }
 
 // 生成一个对象，加入图片，设置模式并开始播放
-var p;
+let p;
 window.addEventListener("DOMContentLoaded", () => {
-  p = new SlideShow(500, "card");
+  p = new SlideShow(500, "normal");
 });
+
+
+const app=Vue.createApp({
+  data () {
+    return {
+      
+    }
+  }
+})
