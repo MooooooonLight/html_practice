@@ -4,38 +4,74 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
-    <script src="../vue.global.js"></script>
-    <script src="../vue-router.global.js"></script>
+    <script src="../../vue.js"></script>
     <title>Document</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <form @submit.prevent="addNewTodo">
+        <label for="new-todo">Add a todo </label>
+        <input
+          type="text"
+          id="new-todo"
+          placeholder="++++++"
+          v-model="newTodoText"
+        />
+        <button>Add</button>
+      </form>
 
-    <script type="text/javascript">
-      const myMixin = {
-        data() {
-          return {
-            message: "hello",
-            foo: "runoob",
-          };
-        },
-      };
+      <ul>
+        <li
+          is="todo-item"
+          v-for="(todo, inde) in todos"
+          :key="todo.id"
+          :title="todo.title"
+          @remove="todos.splice(index, 1)"
+        ></li>
+      </ul>
+    </div>
 
-      const app = Vue.createApp({
-        data() {
-          return {
-            message: "goodbye",
-            bar: "def",
-          };
-        },
-        created() {
-          document.write(JSON.stringify(this.$data));
-        },
-        mixins: [myMixin],
+    <script>
+      Vue.component("todo-item", {
+        template: `
+        <li>
+          {{title}}
+          <button @click="$emit('remove')">Remove</button>
+          </li>`,
+        props: ["title"],
+        emits: ["remove"],
       });
 
-      app.mount("#app");
+      new Vue({
+        el: "#app",
+        data: {
+          newTodoText: "",
+          todos: [
+            {
+              id: 1,
+              title: "1111",
+            },
+            {
+              id: 2,
+              title: "2222",
+            },
+            {
+              id: 3,
+              title: "3333",
+            },
+          ],
+          nextTodoId: 4,
+        },
+        methods: {
+          addNewTodo: function () {
+            this.todos.push({
+              id: this.nextTodoId++,
+              title: this.newTodoText,
+            });
+            this.nextTodoId = "";
+          },
+        },
+      });
     </script>
   </body>
 </html>

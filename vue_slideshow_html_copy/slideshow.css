@@ -84,9 +84,7 @@ body li {
 .pointer:hover {
   cursor: pointer;
 }
-#main-pointer :nth-child(1) {
-  background-color: white;
-}
+
 .change {
   position: relative;
   width: 100%;

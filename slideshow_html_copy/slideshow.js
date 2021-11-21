@@ -42,6 +42,7 @@ class SlideShow {
    *@param in:
    *@param out:
    *@return:
+
    *@Description: 初始化
    */
   initial() {
@@ -651,6 +652,7 @@ class SlideShow {
     let file = document.getElementById("input").files;
 
     // 图片设置进DOM
+    debugger;
     for (let i = 0; i < file.length; i++) {
       let img = document.createElement("img");
       img.className = "img";

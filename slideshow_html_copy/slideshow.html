@@ -10,27 +10,29 @@
   </head>
   <body>
     <!-- 主窗口 -->
-    <div class="shell">
-      <!-- 图片区 -->
-      <div class="img-list"></div>
-      <!-- 切换按钮 -->
-      <div class="btn">
-        <div class="btn-left">&lt</div>
-        <div class="btn-right">&gt</div>
+    <div id="main-window">
+      <div class="shell">
+        <!-- 图片区 -->
+        <div class="img-list"></div>
+        <!-- 切换按钮 -->
+        <div class="btn">
+          <div class="btn-left">&lt</div>
+          <div class="btn-right">&gt</div>
+        </div>
       </div>
-    </div>
-    <!-- 下方标识 -->
-    <ul id="main-pointer">
-      <li id="p1" class="pointer"></li>
-      <li id="p2" class="pointer"></li>
-      <li id="p3" class="pointer"></li>
-    </ul>
-    <!-- 切换样式 -->
-    <div class="change">
-      <input id="input" type="file" src="./image" multiple value="选择图片" />
-      <button id="hover">悬浮切换</button>
-      <button id="out">下标在外</button>
-      <button id="hold">换页常驻</button>
+      <!-- 下方标识 -->
+      <ul id="main-pointer">
+        <li id="p1" class="pointer"></li>
+        <li id="p2" class="pointer"></li>
+        <li id="p3" class="pointer"></li>
+      </ul>
+      <!-- 切换样式 -->
+      <div class="change">
+        <input id="input" type="file" src="./image" multiple value="选择图片" />
+        <button id="hover">悬浮切换</button>
+        <button id="out">下标在外</button>
+        <button id="hold">换页常驻</button>
+      </div>
     </div>
   </body>
 </html>
