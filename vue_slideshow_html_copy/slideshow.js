@@ -7,8 +7,8 @@ new Vue({
     type: "normal", //轮播图类型
     width: 500, //轮播图宽度
     hover: false, //是否启动鼠标悬停切换图片
-    out: false, //是否开启小图标在图片外侧
-    hold: false, //是否使换页标记常驻
+    useOut: false, //是否开启小图标在图片外侧
+    useHold: false, //是否使换页标记常驻
     images: [], //图片数组
     curImg: 0, //当前图片序号
     imgNum: 0, //图片数量
@@ -17,10 +17,24 @@ new Vue({
     useWhite: [], //是否使用白色背景
     pos: { transform: "translateX(0px)" },
     ifBegin: false, //轮播是否开始
+    ifFirst: true, //是否第一次添加图片
   },
+  // 计算属性
+  component: {},
+  //方法
   methods: {
     // 选择界面图片进行设置
     getImages: function (e) {
+      // 如果不是第一次添加则删除最后一张图片
+      if (!this.ifFirst) {
+        this.ifBegin = false;
+        clearInterval(this.play);
+
+        this.images.splice(this.imgNum - 1, 1);
+        this.imgNum--;
+      }
+
+      // 添加图片
       let file = e.target.files;
       for (let i = 0; i < file.length; i++) {
         this.images.push({
@@ -29,9 +43,11 @@ new Vue({
         });
       }
 
-      // 设置小标数量
+      // 设置下标数量
       this.littleNum = this.imgNum;
-      this.useWhite.push(true);
+      if (this.ifFirst) {
+        this.useWhite.push(true);
+      }
       for (let i = 1; i < this.littleNum; i++) {
         this.useWhite.push(false);
       }
@@ -42,6 +58,7 @@ new Vue({
       // 开启自动轮播
       this.autoPlay();
       this.ifBegin = true;
+      this.ifFirst = false;
     },
     // 初始化
     init: function () {
@@ -158,6 +175,41 @@ new Vue({
       }
       this.useWhite[curPoint] = true;
     },
+    // 点击下标移动
+    clickPoint(e) {
+      clearInterval(this.play);
+
+      // 获取移动距离
+      let moveNum = 0;
+      let targetPos = 0;
+      targetPos = parseInt(e.target.id.split("")[1]) - 1;
+      moveNum = this.curImg - targetPos;
+
+      // 设置过度
+      this.useTrans = true;
+
+      // 移动图片
+      let curPos = "(" + (-this.curImg + moveNum) * this.width + "px";
+      this.pos = { transform: "translateX" + curPos };
+
+      // 设置当前图片序号
+      this.curImg = targetPos;
+
+      // 设置下标颜色
+      for (let i = 0; i < this.useWhite.length; i++) {
+        this.useWhite[i] = false;
+      }
+      this.useWhite[this.curImg] = true;
+    },
+    // 下标悬浮
+    clickOut: function () {
+      debugger;
+      this.useOut = !this.useOut;
+    },
+    // 换页常驻
+    clickHold: function () {
+      this.useHold = !this.useHold;
+    },
   },
-  mounted: function () {},
+  mounted: function (e) {},
 });

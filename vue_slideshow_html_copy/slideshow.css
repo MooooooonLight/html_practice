@@ -63,7 +63,7 @@ body li {
   transition: 0.5s;
   color: #fff;
 }
-#main-pointer {
+.main-pointer {
   position: relative;
   left: 0px;
   z-index: 9999;

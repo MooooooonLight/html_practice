@@ -15,8 +15,11 @@
       .white {
         background-color: white;
       }
-      .blue {
-        background-color: blue;
+      .out {
+        bottom: -50px;
+      }
+      .hold {
+        display: block;
       }
     </style>
   </head>
@@ -39,17 +42,22 @@
 
         <!-- 切换按钮 -->
         <div class="btn">
-          <div class="btn-left" @click="imgLeft">&lt</div>
-          <div class="btn-right" @click="imgRight">&gt</div>
+          <div class="btn-left" @click="imgLeft" :class="{hold:useHold}">
+            &lt
+          </div>
+          <div class="btn-right" @click="imgRight" :class="{hold:useHold}">
+            &gt
+          </div>
         </div>
       </div>
       <!-- 下方标识 -->
-      <ul id="main-pointer">
+      <ul class="main-pointer" :class="{out:useOut}">
         <li
           :id="'p'+n"
           class="pointer"
           v-for="(n,index) in littleNum"
           :class="{'white':useWhite[index]}"
+          @click="clickPoint($event)"
         ></li>
       </ul>
       <!-- 切换样式 -->
@@ -63,8 +71,8 @@
           @change="getImages($event)"
         />
         <button id="hover">悬浮切换</button>
-        <button id="out">下标在外</button>
-        <button id="hold">换页常驻</button>
+        <button id="out" @click="clickOut">下标在外</button>
+        <button id="hold" @click="clickHold">换页常驻</button>
       </div>
     </div>
   </body>
