@@ -16,6 +16,7 @@ new Vue({
     useTrans: false, //是否使用过度效果
     useWhite: [], //是否使用白色背景
     pos: { transform: "translateX(0px)" },
+    ifBegin: false, //轮播是否开始
   },
   methods: {
     // 选择界面图片进行设置
@@ -39,7 +40,8 @@ new Vue({
       this.init();
 
       // 开启自动轮播
-      // this.autoPlay();
+      this.autoPlay();
+      this.ifBegin = true;
     },
     // 初始化
     init: function () {
@@ -135,6 +137,7 @@ new Vue({
     },
     // 鼠标离开图片
     mouseOut: function () {
+      if (!this.ifBegin) return;
       clearInterval(this.play);
       this.autoPlay();
     },
