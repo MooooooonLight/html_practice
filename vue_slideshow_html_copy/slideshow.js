@@ -6,7 +6,7 @@ new Vue({
     play: 0, //自动播放定时器
     type: "normal", //轮播图类型
     width: 500, //轮播图宽度
-    hover: false, //是否启动鼠标悬停切换图片
+    useHover: false, //是否启动鼠标悬停切换图片
     useOut: false, //是否开启小图标在图片外侧
     useHold: false, //是否使换页标记常驻
     images: [], //图片数组
@@ -179,6 +179,11 @@ new Vue({
     clickPoint(e) {
       clearInterval(this.play);
 
+      debugger;
+
+      if (this.useHover && e.type === "click") return;
+      if (!this.useHover && e.type === "mouseenter") return;
+
       // 获取移动距离
       let moveNum = 0;
       let targetPos = 0;
@@ -201,9 +206,12 @@ new Vue({
       }
       this.useWhite[this.curImg] = true;
     },
+    // 悬浮切换
+    clickHover: function () {
+      this.useHover = !this.useHover;
+    },
     // 下标悬浮
     clickOut: function () {
-      debugger;
       this.useOut = !this.useOut;
     },
     // 换页常驻

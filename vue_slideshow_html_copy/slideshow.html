@@ -58,6 +58,7 @@
           v-for="(n,index) in littleNum"
           :class="{'white':useWhite[index]}"
           @click="clickPoint($event)"
+          @mouseenter="clickPoint($event)"
         ></li>
       </ul>
       <!-- 切换样式 -->
@@ -70,7 +71,7 @@
           value="选择图片"
           @change="getImages($event)"
         />
-        <button id="hover">悬浮切换</button>
+        <button id="hover" @click="clickHover">悬浮切换</button>
         <button id="out" @click="clickOut">下标在外</button>
         <button id="hold" @click="clickHold">换页常驻</button>
       </div>
