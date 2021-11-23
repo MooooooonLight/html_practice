@@ -25,6 +25,12 @@ new Vue({
   methods: {
     // 选择界面图片进行设置
     getImages: function (e) {
+      // 如果没有图片，直接退出
+
+      debugger;
+      let file = e.target.files;
+      if (file.length === 0) return;
+
       // 如果不是第一次添加则删除最后一张图片
       if (!this.ifFirst) {
         this.ifBegin = false;
@@ -35,7 +41,6 @@ new Vue({
       }
 
       // 添加图片
-      let file = e.target.files;
       for (let i = 0; i < file.length; i++) {
         this.images.push({
           id: this.imgNum++,
@@ -57,8 +62,8 @@ new Vue({
 
       // 开启自动轮播
       this.autoPlay();
-      this.ifBegin = true;
       this.ifFirst = false;
+      this.ifBegin = true;
     },
     // 初始化
     init: function () {
@@ -179,15 +184,14 @@ new Vue({
     clickPoint(e) {
       clearInterval(this.play);
 
-      debugger;
-
       if (this.useHover && e.type === "click") return;
       if (!this.useHover && e.type === "mouseenter") return;
 
       // 获取移动距离
       let moveNum = 0;
       let targetPos = 0;
-      targetPos = parseInt(e.target.id.split("")[1]) - 1;
+      targetPos = parseInt(e.target.id.slice(1)) - 1;
+      debugger;
       moveNum = this.curImg - targetPos;
 
       // 设置过度
