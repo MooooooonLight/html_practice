@@ -52,6 +52,7 @@ router-link {
   align-items: center;
   height: 70px;
   background-color: #333;
+  justify-content: center;
   overflow: auto;
 }
 .top-nav * {
@@ -67,9 +68,6 @@ router-link {
 .function:hover {
   cursor: pointer;
   background-color: black;
-}
-.logo {
-  margin-left: 14%;
 }
 .nav-input {
   margin-left: 50px;
