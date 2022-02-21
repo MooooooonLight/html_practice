@@ -4,93 +4,85 @@
       <img src="./images/cloud.png" />
     </router-link>
     <span class="function">
-      <span>
-        <router-link class="middle">我的音乐</router-link>
-      </span>
-      <span>
-        <router-link class="middle">发现音乐</router-link>
-      </span>
-      <span>
-        <router-link class="middle">关注</router-link>
-      </span>
-      <span>
-        <router-link class="middle">商城</router-link>
-      </span>
-      <span>
-        <router-link class="middle">音乐人</router-link>
-      </span>
-      <span>
-        <router-link class="middle">下载客户端</router-link>
-      </span>
+      <router-link>发现音乐</router-link>
     </span>
+    <span class="function">
+      <router-link>我的音乐</router-link>
+    </span>
+    <span class="function">
+      <router-link>关注</router-link>
+    </span>
+    <span class="function">
+      <router-link>商城</router-link>
+    </span>
+    <span class="function">
+      <router-link>音乐人</router-link>
+    </span>
+    <span class="function">
+      <router-link>下载客户端</router-link>
+    </span>
+    <a-input-search
+      class="nav-input"
+      v-model:value="value"
+      placeholder="音乐/视频/电台/用户"
+      style="width: 200px"
+      @search="onSearch"
+    />
+    <a-button class="nav-button" type="primary">创作者中心</a-button>
+    <a class="login">登录</a>
   </nav>
-  <a-input-search
-    v-model:value="value"
-    placeholder="input search text"
-    style="width: 200px"
-    @search="onSearch"
-  />
 </template>
 
 <script lang="ts" setup>
-const value = ""
-const onSearch = function () { }
-</script>
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
-export default defineComponent({
-  setup() {
-    const value = ref<string>('');
+import { ref } from 'vue';
 
-    const onSearch = (searchValue: string) => {
-      console.log('use value', searchValue);
-      console.log('or use this.value', value.value);
-    };
+//导航栏输入
+const value = ref<string>('');
+const onSearch = (searchValue: string) => {
 
-    return {
-      value,
-      onSearch,
-    };
-  },
-});
+};
 </script>
+
 <style scoped>
 router-link {
   color: white;
 }
 .top-nav {
-  position: relative;
+  display: flex;
+  align-items: center;
   height: 70px;
   background-color: #333;
-  width: 100%;
+  overflow: auto;
 }
-.logo {
-  display: inline-block;
-  position: relative;
-  right: 20%;
+.top-nav * {
+  flex-shrink: 0;
 }
 .function {
-  display: inline-block;
+  display: flex;
+  align-items: center;
   height: 70px;
-  position: absolute;
-  left: 35%;
+  padding-left: 20px;
+  padding-right: 20px;
 }
-.function span {
-  display: inline-block;
-  height: 70px;
-}
-.function span:hover {
+.function:hover {
+  cursor: pointer;
   background-color: black;
 }
-.middle {
-  top: 25px;
-  position: relative;
-  padding-left: 20px;
-  margin-right: 20px;
+.logo {
+  margin-left: 14%;
 }
-.search {
-  padding-left: 20px;
-  margin-right: 20px;
-  position: relative;
+.nav-input {
+  margin-left: 50px;
+}
+.nav-button {
+  margin-left: 20px;
+}
+.login {
+  margin-left: 20px;
+  color: rgb(104, 104, 109);
+  cursor: pointer;
+}
+.login:hover {
+  color: blue;
 }
 </style>
