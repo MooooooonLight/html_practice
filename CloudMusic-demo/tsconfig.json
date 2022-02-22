@@ -1,20 +1,27 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports":true,
+    "baseUrl": ".",
     "target": "esnext",
     "useDefineForClassFields": true,
     "module": "esnext",
     "moduleResolution": "node",
     "strict": true,
     "jsx": "preserve",
+    "isolatedModules": false,
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
-
-    "baseUrl": "./",
-
+    "types": ["node", "vite/client"],
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "../*.d.ts",
+    "*.d.ts",
+    "node_modules/@intlify/vite-plugin-vue-i18n/client.d.ts"
+  ],
+  "exclude": ["node_modules", "dist"]
 }
