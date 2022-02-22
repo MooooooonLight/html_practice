@@ -37,6 +37,7 @@ import Carousel from '../../components/Carousel/index.vue'
   padding-right: 10px;
   border: 1px solid #c20c0c;
   border-radius: 10px;
+  cursor: pointer;
 }
 .top-nav2 span:hover {
   background-color: rgb(150, 144, 144);
