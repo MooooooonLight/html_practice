@@ -1,9 +1,8 @@
 <script lang='ts' setup>
-import Carousel from '../../components/Carousel/index.vue'
+import Carousel from 'comps/Carousel/index.vue'
 </script>
 <template>
-  <nav class="top-nav1"></nav>
-  <nav class="top-nav2">
+  <nav class="top-nav">
     <span>推荐</span>
     <span>排行榜</span>
     <span>歌单</span>
@@ -11,26 +10,22 @@ import Carousel from '../../components/Carousel/index.vue'
     <span>歌手</span>
     <span>新碟上架</span>
   </nav>
-  <div>
-    <Carousel />
+  <div style="display: flex;justify-content: center;">
+    <Carousel :img-height="280" :img-width="730" />
   </div>
 </template>
 <style scoped>
-.top-nav1 {
-  height: 5px;
-  background-color: #c20c0c;
-}
-.top-nav2 {
+.top-nav {
   height: 30px;
   background-color: #c20c0c;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.top-nav2 * {
+.top-nav * {
   flex-shrink: 0;
 }
-.top-nav2 span {
+.top-nav span {
   height: auto;
   color: white;
   padding-left: 10px;
@@ -39,7 +34,7 @@ import Carousel from '../../components/Carousel/index.vue'
   border-radius: 10px;
   cursor: pointer;
 }
-.top-nav2 span:hover {
+.top-nav span:hover {
   background-color: rgb(150, 144, 144);
   opacity: 0.8;
 }

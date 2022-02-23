@@ -31,6 +31,7 @@
     <a-button class="nav-button" type="primary">创作者中心</a-button>
     <a class="login">登录</a>
   </nav>
+  <nav class="bottom-nav"></nav>
 </template>
 
 <script lang="ts" setup>
@@ -46,6 +47,10 @@ const onSearch = (searchValue: string) => {
 <style scoped>
 router-link {
   color: white;
+}
+.bottom-nav {
+  height: 5px;
+  background-color: #c20c0c;
 }
 .top-nav {
   display: flex;
