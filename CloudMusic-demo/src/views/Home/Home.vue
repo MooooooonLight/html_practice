@@ -1,5 +1,7 @@
 <script lang='ts' setup>
-import Carousel from 'comps/Carousel/index.vue'
+import Carousel from '@/components/Carousel/Carousel.vue'
+import Hot from './Hot/Hot.vue';
+import New from './New/New.vue';
 </script>
 <template>
   <nav class="top-nav">
@@ -10,11 +12,22 @@ import Carousel from 'comps/Carousel/index.vue'
     <span>歌手</span>
     <span>新碟上架</span>
   </nav>
-  <div style="display: flex;justify-content: center;">
-    <Carousel :img-height="280" :img-width="730" />
+  <div>
+    <div class="middle">
+      <Carousel :img-height="280" :img-width="730" />
+      <img src="@/assets/downLoad.png" />
+    </div>
+    <div>
+      <Hot />
+    </div>
   </div>
+  <div></div>
+  <New />
 </template>
 <style scoped>
+* {
+  flex-shrink: 0;
+}
 .top-nav {
   height: 30px;
   background-color: #c20c0c;
@@ -37,5 +50,9 @@ import Carousel from 'comps/Carousel/index.vue'
 .top-nav span:hover {
   background-color: rgb(150, 144, 144);
   opacity: 0.8;
+}
+.middle {
+  display: flex;
+  justify-content: center;
 }
 </style>

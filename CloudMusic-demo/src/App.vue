@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Header from './components/Header/index.vue'
-import Home from '@/views/Home/index.vue'
+import Header from './components/Header/Header.vue'
+import Home from '@/views/Home/Home.vue'
 </script>
 
 <template>
